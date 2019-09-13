@@ -1,2 +1,20 @@
-<h1>Products#index</h1>
-<p>Find me in app/views/products/index.html.erb</p>
+<%= render "userHeader_fields" %>
+<div class="productIndexWrapper">
+  <div class="container-fluid clearfix">
+    <div class="float-left productIndexSide p-lg-3">
+    </div>
+    <div class="float-left productIndexMain p-lg-3">
+      <div class="clearfix">
+        <% @products.each do |product| %>
+        <div class="productIndexBox mt-lg-3 rounded">
+          <%= link_to sell_users_product_path(product.id) do %>
+              <%= attachment_image_tag product.product_images.first,:product_image,class: "productIndexPhoto" %>
+            <p class="text-main text-center mt-lg-2 link-style"><%= product.title %></p>
+            <p class="productDetail text-main text-center">￥<%= product.price %></p>
+            <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

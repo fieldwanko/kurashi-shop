@@ -14,3 +14,178 @@
  *= require_self
  */
  @import "bootstrap";
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: #8e8e8e;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.btn-pink {
+  background-color: pink;
+  color: white;
+}
+
+.btn-white {
+  background-color: rgba(255,255,255,0.5);
+  &:hover{
+    background-color: pink;
+  }
+}
+
+.bg-gray {
+  background-color: #bbbbbb;
+}
+
+.cursor {
+  cursor: pointer;
+}
+
+.btn-sky {
+  background-color: lightskyblue;
+  color: white;
+}
+
+.link-style {
+  text-decoration: none;
+}
+.link-style:hover {
+  text-decoration: none;
+}
+
+/*----共通-----*/
+
+/*-----sell_user/Top(sell_item)-----*/
+.sellItemWrapper {
+  height: 700px;
+  width: 100%;
+}
+
+.top-image {
+  background: linear-gradient(-45deg,rgba(94,231,223,0.7),rgba(180,144,202,0.8)),
+  url(/feature.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 700px;
+}
+
+.sellItemMessage {
+  width: 80%;
+  position: absolute;
+  top: 30%;
+  left: 10%;
+}
+
+.sellItemContent {
+  line-height: 30px;
+}
+
+/*-----sell_user/sign_up----*/
+
+
+/*-----sell_user/product/new----*/
+
+.previewImgStyle {
+  height: 100%;
+  width: 20%;
+}
+
+.productNewImage {
+  min-height: 100px;
+  display: none;
+}
+
+.is-active {
+  display: block;
+}
+
+.productInputSize {
+  width: 70%;
+}
+
+.productInputHeight {
+  min-height: 400px;
+}
+
+
+/*----index/product----*/
+
+.productIndexSide {
+  width: 20%;
+  border-right: 2px solid #bbbbbb;
+  min-height: 700px;
+}
+
+.productIndexMain {
+  min-height: 700px;
+  width: 80%;
+}
+
+.productIndexBox {
+  padding: 10px;
+  border: 1px solid #cccccc;
+  width: 30%;
+  float:left;
+  min-height: 300px;
+}
+
+.productIndexBox:nth-child(2){
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.productIndexBox:nth-child(3n+2){
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+.productIndexPhoto {
+  width: 100%;
+  height: 200px;
+}
+
+
+/*---user/mypage----*/
+
+.mypageLeft {
+  width: 70%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

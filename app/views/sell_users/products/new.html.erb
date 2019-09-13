@@ -1,2 +1,69 @@
-<h1>SellUsers::Products#new</h1>
-<p>Find me in app/views/sell_users/products/new.html.erb</p>
+<%= render "sellHeader_fields" %>
+
+<div class="productNewWrapper mt-lg-5">
+  <div class="container">
+    <div class="productNew mb-lg-5">
+      <h2 class="border-bottom pb-lg-4">商品販売ページ</h2>
+      <div class="productNewImage border-bottom pb-lg-4 pt-lg-4" id="productPreviewImg">
+        <%= image_tag "",id: "upPreview",class: "previewImgStyle" %>
+      </div>
+      <%= form_for @product,url: sell_users_products_path do |f| %>
+      <div class="row clearfix mt-lg-5">
+        <div class="col-lg-6 float-left">
+          <div class="productsAddImage mt-lg-4">
+            <label value="AddImage">画像追加</label>
+            <%= f.attachment_field :product_images_product_images,multiple: true,id: "AddImage" %>
+          </div>
+          <div class="productNewName mt-lg-3">
+            <label value="productName" style="width: 100%;">商品名</label>
+            <%= f.text_field :title,id:"productName",class: "productInputSize" %>
+          </div>
+          <div class="productNewName mt-lg-3">
+            <%= f.fields_for :product_arrival do |arrival| %>
+              <label value="productStock" style="width: 100%;">数量</label>
+              <%= arrival.number_field :stock,id:"productStock" %>
+            <% end %>
+          </div>
+          <div class="productsNewContent mt-lg-3">
+            <label value="productContent" style="width: 100%;">商品説明</label>
+            <%= f.text_area :content,id: "productContent",class: "productNewContent productInputSize productInputHeight" %>
+          </div>
+        </div>
+        <div class="col-lg-6 float-left">
+          <div class="productNewDetail mt-lg-3 row">
+            <div class="productSelectManey clearfix col-lg-10 border-bottom pb-lg-2">
+              <label value="productPrice" class="float-left pl-lg-2">単価価格</label>
+              <span>￥</span><%= f.number_field :price,id: "productPrice",class: "float-right" %>
+            </div>
+          </div>
+          <div class="productManey row mt-lg-3">
+            <div class="col-lg-10 border-bottom clearfix">
+              <p class="float-left ml-lg-2 text-left">単価あたり税込価格</p>
+              <span>￥</span><input value="" class="float-right text-left" id="productFee" placeholder="自動で計算されます" readonly="readonly">
+            </div>
+          </div>
+          <!-- <div class="productAllManey row mt-lg-3">
+            <div class="col-lg-10 border-bottom clearfix">
+              <p class="float-left ml-lg-2 text-left">販売価格</p>
+              <span>￥</span><input value="" class="float-right" id="productAll" placeholder="自動で計算されます" raadonly="readonly">
+            </div>
+          </div> -->
+          <div class="confirmProductBtn mt-lg-5 float-right mr-lg-5">
+            <%= f.submit "販売を確定する",class: "btn btn-sky pl-lg-5 pr-lg-5","data-confirm" => "本当に販売を確定致しますか?" %>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
