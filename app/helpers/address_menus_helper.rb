@@ -1,0 +1,2 @@
+module AddressMenusHelper
+end
