@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   def show
     @product = Product.find(params[:id])
     @sell_user = @product.sell_user
+    @fee = 1.10
     @cart = Cart.new
     if @product.product_arrival.stock != 0
       @limit = []

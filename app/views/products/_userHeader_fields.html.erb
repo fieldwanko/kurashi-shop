@@ -7,24 +7,27 @@
         <h1 class="text-dark">Kurashi Shop</h1>
       </div>
       <% if user_signed_in? %>
-        <div class="sellNote col-lg-2 text-center">
-          <%= link_to "マイページ",user_path(current_user.id),class: "headerLine text-main link-def" %>
+        <div class="sellNote col-lg-1 text-center">
+          <%= link_to "商品一覧",products_path,class: "headerLine link-style" %>
         </div>
-        <div class="headerSuport col-lg-2 text-center">
-          <%= link_to "カート",user_carts_path(current_user.id),class: "text-main link-def font-minimum" %>
+        <div class="sellNote col-lg-1 text-center">
+          <%= link_to "マイページ",user_path(current_user.id),class: "headerLine link-style" %>
         </div>
-        <div class="headerSuport col-lg-2 text-center">
-          <p>プレゼント</p>
+        <div class="headerSuport col-lg-1 text-center">
+          <%= link_to "カート",user_carts_path(current_user.id),class: "headerLine link-style" %>
         </div>
-        <div class="headerSuport col-lg-2 text-center">
-          <%= link_to "ログアウト",destroy_sell_user_session_path,class: "text-main link-def font-minimum",method: :delete %>
+        <div class="headerSuport col-lg-1 text-center">
+          <p class="headerLine">プレゼント</p>
+        </div>
+        <div class="headerSuport col-lg-1 text-center">
+          <%= link_to "ログアウト",destroy_sell_user_session_path,class: "headerLine link-style",method: :delete %>
         </div>
       <% else %>
         <div class="headerSuport col-lg-2 text-center">
-            <%= link_to "新規登録",new_user_registration_path,class: "text-main link-def font-minimum" %>
+            <%= link_to "新規登録",new_user_registration_path,class: "headerLine link-style" %>
           </div>
           <div class="headerSuport col-lg-2 text-center">
-            <%= link_to "ログイン",new_user_session_path,class: "text-main link-def font-minimum" %>
+            <%= link_to "ログイン",new_user_session_path,class: "headerLine link-style" %>
           </div>
       <% end %>
   </div>

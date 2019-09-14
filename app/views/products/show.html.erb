@@ -1,2 +1,48 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<%= render "userHeader_fields" %>
+
+<div class="productShowWrapper clearfix mt-lg-5">
+  <%= render "sidebar_fields" %>
+  <div class="productShowMain float-left pr-lg-3 pl-lg-3">
+    <div class="noteShowPhoto border-top border-bottom p-lg-2 mt-lg-3">
+      <% @product.product_images.each do |image| %>
+        <%= attachment_image_tag image,:product_image,style:"width: 180px;height: 100%;" %>
+      <% end %>
+      <!-- <img src="/noimage-photo.png" style="width:180px;height: 100%;"> -->
+    </div>
+    <div class="container">
+      <div class="productShowTitle row">
+        <h2 class="font-bold"><%= @product.title %></h2>
+      </div>
+      <div class="row mt-lg-4">
+        <p class="productShowUser text-main offset-lg-3 col-lg-7 border-bottom"><span class="ml-lg-3"></span>出品者:<span class="ml-lg-3 productShowText font-bold"><%= @product.sell_user.shop_name %></span></p>
+      </div>
+      <div>
+        <h2 class="font-bold">商品情報</h2>
+      </div>
+      <div class="noteShowContent border p-lg-2" style="width: 100%; height: 300px;">
+        <%= @product.content %>
+      </div>
+      <div class="row">
+        <p class="offset-lg-8 col-lg-2 border-bottom pb-lg-3 mt-lg-4">金額</p>
+        <p class="text-right col-lg-2 border-bottom mt-lg-4 pr-lg-4 font-sans font-bold"><%= @product.price %>円</p>
+      </div>
+      <div class="row">
+        <% if @product.product_arrival.stock < 1 %>
+          <p class="border pt-lg-3 pb-lg-3 bg-black text-white offset-lg-3 col-lg-6 text-center">在庫切れです</p>
+        <% else %>
+        <% if @product.status === 1 %>
+          <div class="col-lg-10 offset-lg-1">
+            <%= form_for [@product,@cart],url: product_carts_path(@product.id) do |f| %>
+              <p class="text-right">個数:
+              <span style="padding-left: 30px;"><%= f.select :quantity, @limit %></span></p>
+              <%= f.submit "商品をカートに入れる",class: "btn btn-pink rounded col-lg-8 offset-lg-2 mt-lg-5 text-white col-lg-6" %>
+          </div>
+            <% end %>
+        <% else %>
+            <p class="border pt-lg-3 pb-lg-3 bg-black text-white offset-lg-3 col-lg-6 text-center">入荷待ちです</p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

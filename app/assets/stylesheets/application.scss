@@ -45,6 +45,10 @@
   background-color: #bbbbbb;
 }
 
+.bg-black {
+  background-color: black;
+}
+
 .cursor {
   cursor: pointer;
 }
@@ -54,14 +58,51 @@
   color: white;
 }
 
+.btn-green {
+  background-color: rgba(153,255,153,0.7);
+  color: white;
+}
+
 .link-style {
   text-decoration: none;
+  list-style: none;
 }
+
 .link-style:hover {
   text-decoration: none;
 }
 
+.link-def {
+  &:hover{
+    color: black;
+  }
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.flex {
+  display: flex;
+}
+
+.image-cover {
+  object-fit: cover;
+  text-align: center;
+}
+
+
+
 /*----共通-----*/
+
+/*-----header-----*/
+
+.headerLine {
+  font-size: 12px;
+  display: block;
+}
+
+
 
 /*-----sell_user/Top(sell_item)-----*/
 .sellItemWrapper {
@@ -121,7 +162,7 @@
 .productIndexSide {
   width: 20%;
   border-right: 2px solid #bbbbbb;
-  min-height: 700px;
+  min-height: 1000px;
 }
 
 .productIndexMain {
@@ -159,7 +200,76 @@
   width: 70%;
 }
 
+.display-none {
+  display:none;
+}
 
+/*----product/show----*/
+
+.productShowWrapper {
+  width: 100%;
+  min-height: 700px;
+}
+
+.productShowMain {
+  min-height: 700px;
+  width: 80%;
+}
+
+/*---cart/show---*/
+.cartDetail {
+  width: 100%;
+  min-height: 500px;
+}
+
+.cartDetailLeft {
+  width: 60%;
+  min-height: 500px;
+}
+
+.cartDetailRight {
+  width: 40%;
+  min-height: 500px;
+}
+
+.cartItemBox {
+  height: 100px;
+  position: relative;
+}
+
+.myCartImage {
+  height: 100%;
+}
+
+.cartCancel {
+  height: 40%;
+}
+
+.cartHeaderLine {
+  line-height: 55px;
+}
+
+.cartToOrder form{
+  width: 100%;
+}
+
+.quantityPoint {
+  position: absolute;
+  top: 60px;
+  left: 30%;
+}
+
+.countQuantity {
+  position: absolute;
+  top: 60%;
+  left: 20%;
+}
+
+.cartCancel {
+  position: absolute;
+  top: 50%;
+  left: 80%;
+}
 
 
 

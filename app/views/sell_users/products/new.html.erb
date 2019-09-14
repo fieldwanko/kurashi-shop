@@ -33,13 +33,14 @@
           <div class="productNewDetail mt-lg-3 row">
             <div class="productSelectManey clearfix col-lg-10 border-bottom pb-lg-2">
               <label value="productPrice" class="float-left pl-lg-2">単価価格</label>
-              <span>￥</span><%= f.number_field :price,id: "productPrice",class: "float-right" %>
+              <span>￥</span><input type="number" class="float-right" id="productPrice">
             </div>
           </div>
           <div class="productManey row mt-lg-3">
             <div class="col-lg-10 border-bottom clearfix">
               <p class="float-left ml-lg-2 text-left">単価あたり税込価格</p>
               <span>￥</span><input value="" class="float-right text-left" id="productFee" placeholder="自動で計算されます" readonly="readonly">
+              <%= f.hidden_field :price,value: "",id: "productTotal" %>
             </div>
           </div>
           <!-- <div class="productAllManey row mt-lg-3">

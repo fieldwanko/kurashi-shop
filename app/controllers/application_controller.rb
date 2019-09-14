@@ -19,6 +19,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_cart (product)
+    if Cart.where(user_id: current_user.id).find_by(product_id: product.id)
+      @cart = Cart.where(user_id: current_user.id).find_by(product_id: product.id)
+    else
+      @cart = Cart.create(user_id: current_user.id, product_id: product.id)
+    end
+  end
+
 
 
 

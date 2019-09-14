@@ -15,3 +15,9 @@ $(document).on("change","#AddImage",function(event){
     return reader.readAsDataURL(event.target.files[0]);
   }
 });
+
+$(function(){
+  $('#cart_quantity').change(function(){
+    $('#changeForm').fadeIn();
+  });
+});
