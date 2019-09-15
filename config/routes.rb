@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :sell_users do
+    get 'product_arrivals/update'
+  end
   get 'users/show'
   get 'users/update'
   get 'users/destroy'
@@ -34,5 +37,6 @@ Rails.application.routes.draw do
 
   get "/sell_item" => "home#sell_item",as: "sell_item"
   get "/" => "home#top"
+  get "/success" => "home#success",as: "success"
 
 end

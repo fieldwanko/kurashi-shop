@@ -21,16 +21,16 @@
         <div class="row mt-lg-3">
           <div class="field col-lg-5">
             <label>性（かな表示）</label><br />
-            <%= f.text_field :first_name,class: "col-lg-12 offset-lg-2" %>
+            <%= f.text_field :details_first_name,class: "col-lg-12 offset-lg-2" %>
           </div>
 
           <div class="field col-lg-5 offset-lg-1">
             <label>名（かな表示）</label><br />
-            <%= f.text_field :last_name,class: "col-lg-12 offset-lg-1" %>
+            <%= f.text_field :details_last_name,class: "col-lg-12 offset-lg-1" %>
           </div>
         </div>
         <div class="field mt-lg-3">
-          <%= f.label :郵便番号 %><br />
+          <label>郵便番号(ハイフン無し)</label><br />
           <%= f.text_field :postal_code,class: "col-lg-5 offset-lg-1" %>
         </div>
         <div class="field mt-lg-3">

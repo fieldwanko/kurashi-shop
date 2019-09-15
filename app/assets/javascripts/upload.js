@@ -1,6 +1,4 @@
 $(document).on("change","#AddImage",function(event){
-  // let fileCount = event.target.files.length;
-  // let imageTag = `<%= image_tag "",id: "upPreview#{}",style:"height: 100%;width:100px" %>`
   let reader;
   if (event.target.files.length){
     reader = new FileReader;
@@ -11,6 +9,22 @@ $(document).on("change","#AddImage",function(event){
       productUpPreview.setAttribute("src",event.target.result);
 
       $('#upPreview').attr("src",event.target.result)
+    };
+    return reader.readAsDataURL(event.target.files[0]);
+  }
+});
+
+$(document).on("change","#moreAddImage",function(event){
+  let reader;
+  if (event.target.files.length){
+    reader = new FileReader;
+    reader.onload = function(event){
+      let productUpPreview;
+      productUpPreview = document.getElementById("upPreview");
+      $("#addUpPreview").addClass("is-active");
+      productUpPreview.setAttribute("src",event.target.result);
+
+      $('#addUpPreview').attr("src",event.target.result)
     };
     return reader.readAsDataURL(event.target.files[0]);
   }

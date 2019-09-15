@@ -4,6 +4,7 @@ class SellUsers::ProductsController < ApplicationController
   end
 
   def show
+    @product = Product.find(params[:id])
   end
 
   def new
@@ -20,9 +21,13 @@ class SellUsers::ProductsController < ApplicationController
   end
 
   def edit
+    @product = Product.find(params[:id])
   end
 
   def update
+    product = Product.find(params[:id])
+    product.update(product_params)
+    redirect_to sell_users_products_path
   end
 
   def destroy
@@ -32,4 +37,5 @@ class SellUsers::ProductsController < ApplicationController
     def product_params
       params.require(:product).permit(:title,:price,:content,product_images_product_images: [],product_arrival_attributes: [:stock])
     end
+
 end

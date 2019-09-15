@@ -1,2 +1,52 @@
-<h1>SellUsers::OrderDetails#index</h1>
-<p>Find me in app/views/sell_users/order_details/index.html.erb</p>
+<%= render "sell_users/products/sellHeader_fields" %>
+<div class="sellOrderDetailWrapper">
+  <div class="container mt-sm-5">
+    <table class="table table-striped table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th>購入者</th>
+          <th>購入商品</th>
+          <th>数量</th>
+          <th>合計金額</th>
+          <th>配送状況</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @result.each do |order| %>
+        <% append = order.order_append %>
+            <tr class="table-text orderCheck" id="order_<%= order.id %>">
+              <td><%= append.user.first_name %><%= append.user.last_name %></td>
+              <td><%= order.product.title %></td>
+              <td><%= order.quantity %></td>
+              <td><%= append.total %></td>
+              <td>
+                <% if append.status == "配送準備中" %>
+                  <span class="btn-sky p-lg-2 rounded"><%= append.status %></span></p>
+                <% elsif append.status == "配送中" %>
+                  <span class="btn-pink p-lg-2 rounded"><%= append.status %></span></p>
+                <% elsif appned.status == "配送済み" %>
+                  <span class="btn-gray p-lg-2 rounded"><%= append.status %></span>
+                <% elsif appned.status == "配送済み" %>
+                  <span class="btn-dangar p-lg-2 rounded"><%= append.status %></span>
+                <% end %>
+              </td>
+            </tr>
+            <div class="detailModalWrapper" id="modal_order_<%= order.id %>">
+              <div class="detailForm">
+                <div class="close-modal">
+                  <%= fa_icon("times 2x") %>
+                </div>
+                <div class="detailAppendBox">
+                  <h4 class="border-bottom pb-lg-3 font-bold text-center">宛先情報</h4>
+                  <h3 class="detailAppendText">宛名:<span class="ml-lg-5"><%= append.name %></span></h3>
+                  <h5 class="detailAppendText">かな表記<span class="ml-lg-5"><%= append.details_name %></span></h5>
+                  <h5 class="detailAppendText">郵便番号<span class="ml-lg-5"><%= append.postal_code %></span></h5>
+                  <p class="text-turn detailAppendText">届け先<span class="ml-lg-5"><%= append.address %></span></p>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

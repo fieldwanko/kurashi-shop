@@ -9,7 +9,6 @@ class User < ApplicationRecord
   has_many :address_menus,dependent: :destroy
   has_many :order_appends, dependent: :destroy
 
-  attachment :user_image
 
 
 end

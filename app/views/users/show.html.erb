@@ -37,9 +37,12 @@
       </div>
       <div class="mypageRight float-left">
         <div class="mypageRightCart border-bottom">
-          <p class="mypageCartNum text-dark display-3"><%= @user.carts.count %></p>
+          <p class="mypageCartNum text-dark display-4 text-center"><%= @user.carts.count %></p>
           <%= link_to user_carts_path(current_user.id) do %>
-            <i class="fas fa-shopping-cart fa-8x" style="color: pink;"></i>
+            <!-- <i class="fas fa-shopping-cart fa-8x" style="color: pink;"></i> -->
+            <span class="mypageCartIcon ml-lg-5">
+              <%= fa_icon("shopping-cart") %>
+            </span>
           <% end %>
         </div>
         <div class="mypageRightPoint">
