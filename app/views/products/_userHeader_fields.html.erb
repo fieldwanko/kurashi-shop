@@ -1,0 +1,34 @@
+<header class="border-bottom">
+  <div class="row pt-lg-4">
+    <!-- <div class="searchMode col-lg-2 pl-lg-5">
+      <p><i class="fas fa-search-plus fa-2x"></i> </p>
+    </div> -->
+    <div class="headerTitle col-lg-3 text-center">
+      <h1 class="text-dark">Kurashi Shop</h1>
+    </div>
+      <% if user_signed_in? %>
+        <div class="sellNote col-lg-1 text-center">
+          <%= link_to "商品一覧",products_path,class: "headerLine link-style" %>
+        </div>
+        <div class="sellNote col-lg-1 text-center">
+          <%= link_to "マイページ",user_path(current_user.id),class: "headerLine link-style" %>
+        </div>
+        <div class="headerSuport col-lg-1 text-center">
+          <%= link_to "カート",user_carts_path(current_user.id),class: "headerLine link-style" %>
+        </div>
+        <div class="headerSuport col-lg-1 text-center">
+          <p class="headerLine">プレゼント</p>
+        </div>
+        <div class="headerSuport col-lg-1 text-center">
+          <%= link_to "ログアウト",destroy_user_session_path,class: "headerLine link-style",method: :delete %>
+        </div>
+      <% else %>
+        <div class="headerSuport col-lg-2 text-center">
+            <%= link_to "新規登録",new_user_registration_path,class: "headerLine link-style" %>
+          </div>
+          <div class="headerSuport col-lg-2 text-center">
+            <%= link_to "ログイン",new_user_session_path,class: "headerLine link-style" %>
+          </div>
+      <% end %>
+  </div>
+</header>

@@ -1,0 +1,15 @@
+<div class="sellItemWrapper">
+  <div class="top-image">
+    <h1 class="text-white display-1" style="width: 50%;">Kurashi</h1>
+    <h1 class="text-white display-1 pl-sm-5" style="width: 50%;">Shop</h1>
+  </div>
+  <div class="sellItemMessage">
+    <h2 class="text-white text-center">販売者様へ</h2>
+    <p class="sellItemContent text-white text-center">こちらはKurashi shop への出品者様用のページとなります<br>
+    下記のボタンから新規登録・ログインをお願い致します</p>
+    <div class="row mt-lg-5">
+      <%= link_to "新規登録",new_sell_user_registration_path,class: "btn btn-white p-lg-3 col-lg-4 offset-lg-1 text-white" %>
+      <%= link_to "ログイン",new_sell_user_session_path,class: "btn btn-white p-lg-3 col-lg-4 offset-lg-2 text-white" %>
+    </div>
+  </div>
+</div>

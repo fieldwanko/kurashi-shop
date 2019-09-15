@@ -1,2 +1,68 @@
-<h1>Carts#show</h1>
-<p>Find me in app/views/carts/show.html.erb</p>
+<%= render "/products/userHeader_fields" %>
+<div class="myCartWrapper">
+  <% if current_user.carts.count >= 1 %>
+    <div class="row mt-lg-5 mb-lg-3">
+      <h2 class="text-center offset-lg-4">ここに手順が入ります</h2>
+    </div>
+    <div class="cartDetail clearfix mt-lg-5">
+      <div class="container">
+        <div class="cartDetailLeft float-left">
+          <% @my_carts.each do |cart| %>
+            <div class="cartItemBox pt-lg-3 pb-lg-3 border rounded row bg-white mt-lg-4">
+              <% if cart.product.product_images.first %>
+                <%= attachment_image_tag cart.product.product_images.first,:product_image,class:"myCartImage col-lg-2 image-cover rounded" %>
+              <% else %>
+                <img src="/noimage-photo.png" class="myCartImage col-lg-2 image-cover rounded">
+              <% end %>
+                <span class="col-lg-6"><%= cart.product.title %></span>
+                <p class="col-lg-4">￥<%= cart.product.price %>円</p>
+                <span class="countQuantity">購入数:</span>
+                <span class="quantityPoint">
+                  <% @limit = [] %>
+                  <% @limit.clear %>
+                  <% (1..cart.product.product_arrival.stock).each do |s| %>
+                    <% add_limit = [s,s] %>
+                    <% @limit.push(add_limit) %>
+                  <% end %>
+                  <%= form_for cart, url: user_carts_path(id: cart.id), method: :PUT do |f| %>
+                    <%= f.select :quantity, @limit, :selected=>cart.quantity %>
+                    <%= f.submit "数量変更を反映させる",class: "btn btn-info display-none ml-lg-2",id: "changeForm" %>
+                  <% end %>
+                </span>
+                <%= link_to "削除",cart_path(cart.id),class: "cartCancel col-lg-1 offset-lg-1 btn btn-danger link-style","data-confirm" => "本当に削除しますか？",method: :delete %>
+            </div>
+          <% end %>
+        </div>
+        <div class="cartDetailRight float-left pt-lg-5">
+          <h2 class="offset-lg-2 border-bottom">カート内金額</h2>
+          <div class="row mt-lg-3">
+            <p class="offset-lg-3 col-lg-4 text-left font-bold">税込合計金額</p>
+            <p class="col-lg-4 offset-lg-1 text-right font-bold"><%= get_price(@my_carts) %>円</p>
+          </div>
+          <div class="cartToOrder row">
+            <% total = get_price(@my_carts) %>
+            <%= form_for @order_append do |f| %>
+              <%= f.hidden_field :total,value: total %>
+              <%= f.submit "購入画面へ進む",class: "btn btn-pink col-lg-8 offset-lg-3 mt-lg-5" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% else %>
+  <div class="row mt-lg-5">
+    <h2 class="col-lg-6 offset-lg-3 text-main">
+      まだ商品がカートに入ってません
+    </h2>
+  </div>
+  <% end %>
+</div>
+
+
+
+
+
+
+
+
+

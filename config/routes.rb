@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  namespace :sell_users do
+    get 'product_arrivals/update'
+  end
+  get 'users/show'
+  get 'users/update'
+  get 'users/destroy'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :sell_users,controllers: {
   sessions:   'sell_users/sessions' ,
@@ -31,5 +37,6 @@ Rails.application.routes.draw do
 
   get "/sell_item" => "home#sell_item",as: "sell_item"
   get "/" => "home#top"
+  get "/success" => "home#success",as: "success"
 
 end

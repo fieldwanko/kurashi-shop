@@ -1,2 +1,22 @@
-<h1>SellUsers::Products#index</h1>
-<p>Find me in app/views/sell_users/products/index.html.erb</p>
+<%= render "sellHeader_fields" %>
+
+<div class="productIndexWrapper">
+  <div class="container-fluid clearfix">
+    <div class="float-left productIndexSide p-lg-3">
+    </div>
+    <div class="float-left productIndexMain p-lg-3">
+      <h2 class="border-bottom pb-lg-3">出品された商品</h2>
+      <div class="clearfix">
+        <% @products.each do |product| %>
+        <div class="productIndexBox mt-lg-3 rounded">
+          <%= link_to edit_sell_users_product_path(product.id) do %>
+              <%= attachment_image_tag product.product_images.first,:product_image,class: "productIndexPhoto" %>
+            <p class="text-main text-center mt-lg-2 link-style"><%= product.title %></p>
+            <p class="productDetail text-main text-center">￥<%= product.price %></p>
+            <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

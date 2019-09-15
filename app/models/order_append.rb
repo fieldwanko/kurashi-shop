@@ -4,7 +4,7 @@ class OrderAppend < ApplicationRecord
   belongs_to :user
 
   enum pay: {
-    代引き:0, 銀行振込:1, クレジット決済: 3
+    代引き:0, 銀行振込:1, クレジット決済: 2
   }
 
   enum status: {
