@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_13_025321) do
+ActiveRecord::Schema.define(version: 2019_09_14_063415) do
 
   create_table "address_menus", force: :cascade do |t|
     t.string "name"
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2019_09_13_025321) do
     t.text "address"
     t.integer "total"
     t.integer "pay"
-    t.string "status"
+    t.integer "status"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -109,7 +109,6 @@ ActiveRecord::Schema.define(version: 2019_09_13_025321) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "user_name"
-    t.string "user_image_id"
     t.string "first_name"
     t.string "last_name"
     t.string "details_first_name"

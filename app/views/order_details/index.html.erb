@@ -1,2 +1,39 @@
-<h1>OrderDetails#index</h1>
-<p>Find me in app/views/order_details/index.html.erb</p>
+<%= render "/products/userHeader_fields" %>
+<h4 class="mb-lg-5 border-bottom pb-lg-4 pl-lg-5 mt-lg-5">購入履歴</h4>
+<div class="userDetailShowWrapper">
+  <div class="container">
+    <% @order_appends.each do |append| %>
+      <div class="row">
+        <div class="userDetailBox border rounded p-lg-2 float-left mt-lg-4">
+          <h4 class="border-bottom pb-lg-3 font-bold text-center">購入情報</h4>
+          <p>支払い方法:<%= append.pay %></p>
+          <% append.order_details.each do |detail| %>
+            <p class="text-limit">商品名:「<%= detail.product.title %>」</p>
+            <p>単価:<%= detail.product.price %>円</p>
+            <p>数量:<%= detail.quantity %>個</p>
+            <p>お買い上げ:<%= detail.price * detail.quantity %>円</p>
+            <p>購入日:<%= detail.created_at.strftime('%Y/%m/%d') %></p>
+          <% end %>
+        </div>
+        <span class="arrowSpace float-left mt-lg-5"><%= fa_icon("arrow-right 5x") %></span>
+        <div class="userAppendBox border rounded p-lg-2 float-left mt-lg-4">
+          <h4 class="border-bottom pb-lg-3 font-bold text-center">宛先情報</h4>
+          <p><%= append.name %>様宛</p>
+          <p class="font-minimum">かな表記[<%= append.details_name %>]</p>
+          <p>〒<%= append.postal_code %></p>
+          <p class="text-turn">届け先<%= append.address %></p>
+          <p class="text-right">配送状況:
+            <% if append.status == "配送準備中" %>
+              <span class="btn-sky p-lg-4 ml-lg-4 rounded"><%= append.status %></span></p>
+            <% elsif append.status == "配送中" %>
+              <span class="btn-pink p-lg-4 ml-lg-4 rounded"><%= append.status %></span></p>
+            <% elsif appned.status == "配送済み" %>
+              <span class="btn-gray p-lg-4 ml-lg-4 rounded"><%= append.status %></span>
+            <% elsif appned.status == "配送済み" %>
+              <span class="btn-dangar p-lg-4 ml-lg-4 rounded"><%= append.status %></span>
+            <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

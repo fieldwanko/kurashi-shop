@@ -1,2 +1,79 @@
-<h1>OrderAppends#show</h1>
-<p>Find me in app/views/order_appends/show.html.erb</p>
+<%= render "/products/userHeader_fields" %>
+
+<div class="orderAppendWrapper mb-lg-5">
+  <div class="container">
+    <div class="orderAppendTitle">
+      <h2 class="border-bottom pb-lg-3 mt-lg-5">送付先住所の選択</h2>
+    </div>
+    <%= form_for @order_append,url: order_append_path(@order_append.id) do |f| %>
+      <div class="orderAddress mt-lg-3 clearfix mb-lg-5">
+        <div class="orderAddressBox pl-lg-2 pr-lg-2 border rounded pt-lg-3 pb-lg-3 float-left">
+          <span><%= radio_button_tag :address,0,:checked %></span>
+          <p class="pl-lg-2 pt-lg-3"><span class="font-bold">お名前:</span><%= current_user.first_name %><span class="ml-lg-2"></span><%= current_user.last_name %>
+          </p>
+          <p class="pl-lg-4">〶<%= current_user.postal_code %></p>
+          <p class="pl-lg-4"><%= current_user.address %></p>
+        </div>
+        <% @address_menus.each do |address| %>
+          <div class="orderAddressBox pl-lg-2 pr-lg-2 border rounded pt-lg-3 pb-lg-3 float-left">
+            <span><%= radio_button_tag :address,address.id %></span>
+            <p class="pl-lg-2 pt-lg-3"><span class="font-bold">お名前:</span><%= address.name %>
+            </p>
+            <p class="pl-lg-4">〶<%= address.postal_code %></p>
+            <p class="pl-lg-4"><%= address.address %></p>
+          </div>
+        <% end %>
+        <% if @address_menus.count <= 1 %>
+          <div class="orderAddressBox pl-lg-2 pr-lg-2 border rounded pt-lg-3 pb-lg-3 float-left">
+            <span class="pb-lg-5 mt-lg-5"><%= link_to "新しく住所を登録する",new_user_address_menus_path(current_user.id),class:"btn btn-sky mt-lg-5 mb-lg-5" %></span>
+          </div>
+        <% end %>
+      </div>
+      <span class="spanPink offset-lg-5 mb-lg-5 text-pink"><%= fa_icon("arrow-down 5x") %></span>
+      <div class="orderAppendPay mb-lg-5 mt-lg-5">
+        <h2 class="mt-lg-5 pb-lg-3 border-bottom">支払い方法</h2>
+        <div class="orderPayfield">
+          <div class="row mb-lg-3">
+            <span class="col-lg-1 offset-lg-1 text-right"><%= radio_button_tag :pay,0,:checked %></span>
+            <h3 class="col-lg-4">代引き</h3>
+          </div>
+          <div class="row mb-lg-3">
+            <span class="col-lg-1 offset-lg-1 text-right"><%= radio_button_tag :pay,1 %></span>
+            <h3 class="col-lg-4">銀行振込</h3>
+          </div>
+          <div class="row mb-lg-3">
+            <span class="col-lg-1 offset-lg-1 text-right"><%= radio_button_tag :pay,2 %></span>
+            <h3 class="col-lg-4">クレジット決済</h3>
+          </div>
+        </div>
+      </div>
+      <span class="spanPink offset-lg-5 mb-lg-5 text-pink"><%= fa_icon("arrow-down 5x") %></span>
+      <div class="orderAppendCheck mt-lg-5 mb-lg-5">
+        <h2 class="mt-lg-5 pb-lg-3 border-bottom">購入商品確認</h2>
+
+        <% @my_carts.each do |cart| %>
+          <div class="cartItemBox pt-lg-3 pb-lg-3 border rounded row bg-white mt-lg-4">
+          <% if cart.product.product_images.first %>
+            <%= attachment_image_tag cart.product.product_images.first,:product_image,class:"myCartImage col-lg-2 image-cover rounded" %>
+          <% else %>
+            <img src="/noimage-photo.png" class="myCartImage col-lg-2 image-cover rounded">
+          <% end %>
+            <span class="col-lg-6"><%= cart.product.title %></span>
+            <p class="col-lg-4">￥<%= cart.product.price %>円</p>
+            <span class="countQuantity">購入数:</span>
+            <span class="quantityPoint"><%= cart.quantity %></span>
+          </div>
+        <% end %>
+      </div>
+      <div class="row mt-lg-5 mb-lg-5">
+        <p class="offset-lg-1 col-lg-5 orderAppendJudge border p-lg-3">一度購入されました商品は、返品することができません<br>
+        ご確認の上、購入をお願い致します。</p>
+        <p class="btn col-lg-4 offset-lg-2 border-bottom">合計金額:
+          <span class="font-bold"><%= @order_append.total %></span>円</p>
+      </div>
+      <div class="row mt-lg-5 mb-lg-5">
+        <%= f.submit "購入確定",class:"btn col-lg-4 offset-lg-8 btn-pink" %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<header class="border-bottom">
+  <div class="row pt-lg-4">
+    <div class="headerTitle col-lg-3 text-center">
+      <h1 class="text-dark">Kurashi Shop</h1>
+    </div>
+    <div class="col-lg-1 text-center font-minimum">
+      <%= link_to "商品一覧",sell_users_products_path,class: "headerLine font-minimum" %>
+    </div>
+    <div class="col-lg-2 text-center">
+      <%= link_to "新しく商品を販売する",new_sell_users_product_path,class: "headerLine font-minimum" %>
+    </div>
+    <div class="headerSuport col-lg-1 text-center font-minimum">
+      <%= link_to "購入者情報",sell_users_order_details_path,class: "headerLine font-minimum" %>
+    </div>
+    <div class="headerSuport col-lg-1 text-center font-minimum">
+      <p>在庫追加</p>
+    </div>
+    <!-- <div class="headerSuport col-lg- text-center">
+      <p></p>
+      <%#= link_to "全ての商品",notes_path,class: "text-main link-def font-minimum" %> -->
+    <!-- </div> -->
+    <div class="headerSuport col-lg-1 text-center">
+      <%= link_to "ログアウト",destroy_sell_user_session_path,class: "text-main link-def font-minimum",method: :delete %>
+    </div>
+  </div>
+</header>

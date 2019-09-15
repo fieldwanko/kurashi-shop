@@ -1,29 +1,71 @@
-<h2>Sign up</h2>
+<div class="mt-lg-5 mb-lg-5">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3 border p-lg-4 rounded">
+        <div class="field">
+          <%= f.label :ユーザー名 %><br />
+          <%= f.text_field :user_name, autofocus: true,class: "col-lg-5 offset-lg-1" %>
+        </div>
+        <div class="row mt-lg-3">
+          <div class="field col-lg-5">
+            <%= f.label :性 %><br />
+            <%= f.text_field :first_name,class: "col-lg-12 offset-lg-2" %>
+          </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="field col-lg-5 offset-lg-1">
+            <%= f.label :名 %><br />
+            <%= f.text_field :last_name,class: "col-lg-12 offset-lg-1" %>
+          </div>
+        </div>
+        <div class="row mt-lg-3">
+          <div class="field col-lg-5">
+            <label>性（かな表示）</label><br />
+            <%= f.text_field :details_first_name,class: "col-lg-12 offset-lg-2" %>
+          </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+          <div class="field col-lg-5 offset-lg-1">
+            <label>名（かな表示）</label><br />
+            <%= f.text_field :details_last_name,class: "col-lg-12 offset-lg-1" %>
+          </div>
+        </div>
+        <div class="field mt-lg-3">
+          <label>郵便番号(ハイフン無し)</label><br />
+          <%= f.text_field :postal_code,class: "col-lg-5 offset-lg-1" %>
+        </div>
+        <div class="field mt-lg-3">
+          <%= f.label :住所 %><br />
+          <%= f.text_field :address,class: "col-lg-10 offset-lg-1" %>
+        </div>
+        <div class="field mt-lg-3">
+          <%= f.label :電話番号 %><br />
+          <%= f.text_field :tel,class: "col-lg-4 offset-lg-1" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+        <div class="field mt-lg-3">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",class: "col-lg-7 ml-lg-5" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+        <div class="field mt-lg-3">
+          <%= f.label :パスワード %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password",class: "col-lg-6 ml-lg-5" %>
+        </div>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
+        <div class="field mt-lg-3">
+          <%= f.label :パスワード確認 %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "col-lg-6 ml-lg-5" %>
+        </div>
 
-<%= render "users/shared/links" %>
+        <div class="actions mt-lg-5">
+          <%= f.submit "新規登録",class: "btn-pink col-lg-6 offset-lg-3 rounded cursor pt-lg-3 pb-lg-3 mt-lg-4 rounded" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <%= render "users/shared/links" %>
+</div>

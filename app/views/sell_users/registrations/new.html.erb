@@ -1,29 +1,48 @@
-<h2>Sign up</h2>
+<div class="mt-lg-3 mb-lg-5">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="row">
+      <div class="sellUserSign col-lg-6 offset-lg-3 border p-lg-4">
+        <div class="field">
+          <%= f.label :販売店名 %><br />
+          <%= f.text_field :shop_name, autofocus: true,class: "col-lg-10 offset-lg-1 rounded" %>
+        </div>
+        <div class="field mt-lg-3">
+          <%= f.label :所在地 %><br />
+          <%= f.text_field :address,class: "col-lg-10 offset-lg-1 rounded" %>
+        </div>
+        <div class="field mt-lg-3">
+          <%= f.label :郵便番号 %><br />
+          <%= f.text_field :postal_code,class: "col-lg-10 offset-lg-1 rounded" %>
+        </div>
+        <div class="field mt-lg-3">
+          <%= f.label :電話番号 %><br />
+          <%= f.text_field :tel,class: "col-lg-10 offset-lg-1 rounded" %>
+        </div>
+        <div class="field mt-lg-3">
+          <%= f.label :Email %><br />
+          <%= f.email_field :email, autocomplete: "email",class: "col-lg-10 offset-lg-1 rounded" %>
+        </div>
+        <div class="field mt-lg-3">
+          <%= f.label :パスワード %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password",class: "col-lg-10 offset-lg-1 rounded" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <div class="field mt-lg-3">
+          <%= f.label :パスワード確認 %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "col-lg-10 offset-lg-1 rounded" %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+        <div class="actions">
+          <%= f.submit "新規登録",class: "btn-pink col-lg-6 offset-lg-3 rounded cursor pt-lg-3 pb-lg-3 mt-lg-4 rounded" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "sell_users/shared/links" %>
+  <%= render "sell_users/shared/links" %>
+</div>

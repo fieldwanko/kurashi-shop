@@ -1,0 +1,53 @@
+<%= render "/products/userHeader_fields" %>
+
+<div class="userMypageWrapper mt-lg-5">
+  <div class="container-fuild crearfix ml-lg-5">
+    <div class="row">
+      <h2><%= @user.user_name %>さんのマイページ</h2>
+    </div>
+      <div class="mypageLeft border-right float-left mt-lg-5">
+        <%= form_for @user,url: user_path(@user.id) do |f| %>
+        <div class="row mb-lg-5">
+          <span><%= link_to "購入履歴",order_details_path,class: "btn btn-green pl-lg-2 pr-lg-2 rounded ml-lg-3" %></span>
+          <span class="ml-lg-3"> <%= link_to "複数住所を登録",new_user_address_menus_path(@user.id),class: "btn btn-pink pl-lg-2 pr-lg-2 link-style" %>
+          </li>
+          <span class="ml-lg-2 btn btn-sky createFormBtn pl-lg-3 pr-lg-3">基本情報変更</span>
+          <span>
+          <%= f.submit "変更を保存",class: "btn btn-sky pl-lg-3 pr-lg-3 ml-lg-1 createForm display-none" %>
+          </span>
+        </div>
+        <ul class="pl-lg-4 link-style">
+          <li class="mb-lg-5 pb-lg-2 border-bottom">
+            User Name<span class="pl-lg-5 font-sans"><%= @user.user_name %></span><%= f.text_field :user_name,class: "ml-lg-5 col-lg-5 display-none createForm" %>
+          </li>
+          <li class="mb-lg-5 pb-lg-2 border-bottom">
+            Email<span class="pl-lg-5"><%= @user.email %></span><%= f.text_field :email,class: "ml-lg-5 col-lg-5 display-none createForm" %>
+          </li>
+          <li class="mb-lg-5 pb-lg-2 border-bottom">
+            郵便番号<span class="pl-lg-5"><%= @user.postal_code %></span><%= f.text_field :postal_code,class: "ml-lg-5 col-lg-3 display-none createForm" %>
+          </li>
+          <li class="mb-lg-5 pb-lg-2 border-bottom">
+            住所<span class="pl-lg-5"><%= @user.address %></span><%= f.text_field :address,class: "ml-lg-5 col-lg-6 display-none createForm" %>
+          </li>
+          <li class="mb-lg-5 pb-lg-2 border-bottom">
+            TEL<span class="pl-lg-5"><%= @user.tel %></span><%= f.text_field :tel,class: "ml-lg-5 col-lg-3 display-none createForm" %>
+          </li>
+        </ul>
+        <% end %>
+      </div>
+      <div class="mypageRight float-left">
+        <div class="mypageRightCart border-bottom">
+          <p class="mypageCartNum text-dark display-4 text-center"><%= @user.carts.count %></p>
+          <%= link_to user_carts_path(current_user.id) do %>
+            <!-- <i class="fas fa-shopping-cart fa-8x" style="color: pink;"></i> -->
+            <span class="mypageCartIcon ml-lg-5">
+              <%= fa_icon("shopping-cart") %>
+            </span>
+          <% end %>
+        </div>
+        <div class="mypageRightPoint">
+          
+        </div>
+      </div>
+    </div>
+</div>
