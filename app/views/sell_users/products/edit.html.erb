@@ -2,49 +2,49 @@
 <div class="orderShowWrapper clearfix mt-lg-5">
   <div class="container">
     <div class="productShowTitle row">
-            <h2 class="font-bold"><%= @product.title %></h2>
-          </div>
+      <h2 class="font-bold"><%= @product.title %></h2>
+    </div>
     <div class="orderShowMain pr-lg-3 pl-lg-3">
-      <div class="noteShowPhoto border-top border-bottom p-lg-2 mt-lg-3" id="moreProductImage">
-        <% @product.product_images.each do |image| %>
-          <%= attachment_image_tag image,:product_image,style:"width: 180px;height: 100%;" %>
-        <% end %>
-      </div>
-      <div class="container">
-        <div class="row mt-lg-4">
-          <div class="col-lg-3">
-            <lavel value="nowStock">現在の在庫数</lavel><br>
-            <input value="<%= @product.product_arrival.stock.to_i %>" readonly="readonly" id="nowStock" type="number">
+      <%= form_for @product,url: sell_users_product_path(@product.id),method: :put do |f| %>
+        <div class="noteShowPhoto border-top border-bottom p-lg-2 mt-lg-3" id="moreProductImage">
+          <% @product.product_images.each do |image| %>
+            <%= attachment_image_tag image,:product_image,style:"width: 180px;height: 100%;" %>
+          <% end %>
+        </div>
+        <div class="container">
+          <div class="row mt-lg-4">
+            <div class="col-lg-3">
+              <lavel value="nowStock">現在の在庫数</lavel><br>
+              <input value="<%= @product.product_arrival.stock.to_i %>" readonly="readonly" id="nowStock" type="number">
+            </div>
+            <span class="col-lg-1 spanPink"><%= fa_icon("angle-double-right 4x") %></span>
+            <div class="col-lg-3">
+                <label value="productStock" style="width: 100%;">在庫数を増やす<br>増やす分のみ入力してください</label>
+                <input type="number" id="addStockForm" value="0">
+            </div>
+            <span class="col-lg-1 spanPink"><%= fa_icon("angle-double-right 4x") %></span>
+            <div class="col-lg-4">
+                <%= f.fields_for :product_arrival do |arrival| %>
+                <label value="addStock">既存の在庫との合計数</label>
+                  <%= arrival.number_field :stock,id: "addStock",value: @product.product_arrival.stock.to_i,readonly: "readonly" %>
+                <% end %>
+            </div>
           </div>
-          <span class="col-lg-1 spanPink"><%= fa_icon("angle-double-right 4x") %></span>
-          <div class="col-lg-3">
-              <label value="productStock" style="width: 100%;">在庫数を増やす<br>増やす分のみ入力してください</label>
-              <input type="number" id="addStockForm">
+          <div>
+            <h2 class="font-bold">商品情報</h2>
           </div>
-          <span class="col-lg-1 spanPink"><%= fa_icon("angle-double-right 4x") %></span>
-          <div class="col-lg-4">
-            <%= form_for @product,url: sell_users_product_path(@product.id),method: :put do |f| %>
-              <%= f.fields_for :product_arrival do |arrival| %>
-              <label value="addStock">既存の在庫との合計数</label>
-                <%= arrival.number_field :stock,id: "addStock",value: "",readonly: "readonly", placeholder: "自動で計算されます" %>
-                <%= f.submit "更新",class: "btn btn-sky ml-lg-4 pl-lg-4 pr-lg-4" %>
-              <% end %>
-            <% end %>
+          <div class="noteShowContent">
+            <%= f.text_area :content,class: "sellEditProductTextarea" %>
+         </div>
+          <div class="row">
+            <%= f.submit "更新する",class: "btn btn-sky col-lg-3 offset-lg-4" %>
+            <p class="col-lg-2 border-bottom pb-lg-3 mt-lg-4">金額</p>
+            <p class="text-right col-lg-2 border-bottom mt-lg-4 pr-lg-4 font-sans font-bold"><%= @product.price %>円</p>
+          </div>
+          <div class="row mb-lg-5">
           </div>
         </div>
-        <div>
-          <h2 class="font-bold">商品情報</h2>
-        </div>
-        <div class="noteShowContent border p-lg-2" style="width: 100%; height: 300px;">
-          <%= @product.content %>
-       </div>
-        <div class="row">
-          <p class="offset-lg-8 col-lg-2 border-bottom pb-lg-3 mt-lg-4">金額</p>
-          <p class="text-right col-lg-2 border-bottom mt-lg-4 pr-lg-4 font-sans font-bold"><%= @product.price %>円</p>
-        </div>
-        <div class="row mb-lg-5">
-        </div>
-      </div>
+      <% end %>
     </div>
   </div>
 </div>
