@@ -1,6 +1,8 @@
 class ProductsController < ApplicationController
   def index
-    @products = Product.all
+    @products = Product.all.order(created_at: :desc).page(params[:page]).per(20)
+    @search = @products.ransack(params[:q])
+    @result = @search.result
   end
 
   def show
@@ -15,6 +17,11 @@ class ProductsController < ApplicationController
         @limit.push(add_limit)
       end
     end
+  end
+
+  private
+  def search_params
+      params.require(:q).permit!
   end
 
 end
