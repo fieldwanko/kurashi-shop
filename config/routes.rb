@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  namespace :sell_users do
-    get 'product_arrivals/update'
-  end
-  get 'users/show'
-  get 'users/update'
-  get 'users/destroy'
+  # namespace :sell_users do
+  #   get 'product_arrivals/update'
+  # end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :sell_users,controllers: {
   sessions:   'sell_users/sessions' ,
@@ -15,6 +12,11 @@ Rails.application.routes.draw do
   sessions:   'users/sessions' ,
   passwords:    'users/passwords' ,
   registrations:    'users/registrations'
+  }
+  devise_for :admins,controllers: {
+    sessions: 'admins/sessions',
+    passwords: 'admins/passwords',
+    registrations: 'admins/registrations'
   }
 
   resources :users, only:[:show,:update,:destroy] do
@@ -34,9 +36,16 @@ Rails.application.routes.draw do
     resource :carts, only:[:create]
   end
 
+  namespace :admins do
+    resources :users,only:[:index,:destroy]
+    resources :sell_users,only:[:index,:destroy]
+    resources :products,only:[:index,:destroy]
+  end
+
   # get "/" => "products#index",as: "root"
   get "/sell_item" => "home#sell_item",as: "sell_item"
   get "/" => "home#top"
   get "/success" => "home#success",as: "success"
+  get "/master" => "home#master",as: "master"
 
 end

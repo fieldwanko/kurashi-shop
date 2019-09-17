@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
         products_path
       when SellUser
         sell_users_products_path
+      when Admin
+        admins_users_path
     end
   end
 
@@ -16,6 +18,8 @@ class ApplicationController < ActionController::Base
         products_path
       when :sell_user
         sell_item_path
+      when :admin
+        master_path
     end
   end
 
