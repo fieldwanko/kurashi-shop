@@ -5,12 +5,26 @@
     <div class="float-left productIndexSide p-lg-3">
     </div>
     <div class="float-left productIndexMain p-lg-3">
+    <div class="row">
+      <p class="col-lg-4">検索条件を設定して下さい⇨</p>
+      <p class="optionA col-lg-1 btn border mr-lg-2 btn-sky">ID</p>
+      <p class="optionB col-lg-1 btn border mr-lg-2">商品名</p>
+      <p class="optionC col-lg-2 btn border mr-lg-2">関連ワード</p>
+    </div>
       <div class="row border-bottom pb-lg-3">
-        <h2>出品された商品</h2>
-        <span class="col-lg-2 text-right"><%=  fa_icon("search-plus 2x") %></span>
-        <%= search_form_for @search,class: "col-lg-7" do |f| %>
-          <%= f.text_field :content_cont,class: "searchInput col-lg-9 rounded",required: true %>
-          <%= f.submit "検索",class: "btn btn-pink pl-lg-3 pr-lg-3" %>
+        <p class="col-lg-2 font-bold">出品商品</p>
+        <span class="col-lg-1 text-right"><%=  fa_icon("search-plus 2x") %></span>
+        <%= search_form_for @search,url: sell_users_products_path,class: "col-lg-7 searchA" do |f| %>
+          <%= f.number_field :id_eq,class: "searchInput searchA col-lg-9 rounded",required: true %>
+          <%= f.submit "検索",class: "btn btn-pink pl-lg-3 pr-lg-3 searchA" %>
+        <% end %>
+        <%= search_form_for @search,url: sell_users_products_path,class: "col-lg-7 searchB" do |f| %>
+          <%= f.text_field :title_cont,class: "searchInput searchB col-lg-9 rounded",required: true %>
+          <%= f.submit "検索",class: "btn btn-pink pl-lg-3 pr-lg-3 searchB" %>
+        <% end %>
+        <%= search_form_for @search,url: sell_users_products_path,class: "col-lg-7 searchC" do |f| %>
+          <%= f.text_field :content_cont,class: "searchInput searchC col-lg-9 rounded",required: true %>
+          <%= f.submit "検索",class: "btn btn-pink pl-lg-3 pr-lg-3 searchC" %>
         <% end %>
       </div>
       <div class="clearfix">
