@@ -34,27 +34,6 @@ class OrderAppendsController < ApplicationController
       order_append.user_id = current_user.id
       order_append.status = 1
     end
-
-    # if params[:coupon]
-    #   coupon_codeA = params[:coupon].first
-    #   coupon_codeB = prams[:coupon].last
-    #   couponA = Coupon.find(coupon_codeA)
-    #   couponB = Coupon.find(coupon_codeB)
-    #   if couponA.status == "500円引き"
-    #     order_append.price - 500
-    #     couponA.destroy
-    #   elsif couponB.status == "500円引き"
-    #     order_append.price - 500
-    #     couponB.destroy
-    #   else
-    #   end
-    # end
-
-    # if params[:coupon]
-      
-
-
-
     carts.each do |cart|
       product = cart.product
       order_detail = order_append.order_details.build
@@ -67,6 +46,20 @@ class OrderAppendsController < ApplicationController
       cart.destroy
     end
     order_append.pay = params[:pay].to_i
+    if params[:coupons]
+      hoge = couponA_params
+      binding.pry
+      coupon_codeA = couponA_params
+      coupon_codeB = couponB_params
+      couponA = Coupon.find(params[coupon_codeA])
+      couponB = Coupon.find(params[coupon_codeB])
+      couponA.destroy
+      couponB.destroy
+    end
+    if params[:total]
+      order_append.total = params[:status].to_i
+    end
+
     order_append.save
     redirect_to success_path
   end
@@ -74,6 +67,14 @@ class OrderAppendsController < ApplicationController
   private
     def total_params
       params.require(:order_append).permit(:total)
+    end
+
+    def couponA_params
+      params.require(:order_append).permit(:couponA)
+    end
+
+    def couponB_params
+      params.require(:order_append).permit(:couponB)
     end
 
 
