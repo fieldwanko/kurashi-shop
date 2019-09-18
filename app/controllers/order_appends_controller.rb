@@ -46,18 +46,19 @@ class OrderAppendsController < ApplicationController
       cart.destroy
     end
     order_append.pay = params[:pay].to_i
-    if params[:coupons]
-      hoge = couponA_params
-      binding.pry
-      coupon_codeA = couponA_params
-      coupon_codeB = couponB_params
-      couponA = Coupon.find(params[coupon_codeA])
-      couponB = Coupon.find(params[coupon_codeB])
+    binding.pry
+    order_append.update(coupon_params)
+    coupon_codeA = order_append.first_coupon
+    if coupon_codeA.nil?
+    else
+      order_append.update(total_params)
+      couponA = Coupon.find(coupon_codeA)
       couponA.destroy
-      couponB.destroy
-    end
-    if params[:total]
-      order_append.total = params[:status].to_i
+      if coupon_codeB = order_append.last_coupon
+          coupon_codeB = order_append.last_coupon
+          couponB = Coupon.find(coupon_codeB)
+          couponB.destroy
+      end
     end
 
     order_append.save
@@ -69,12 +70,8 @@ class OrderAppendsController < ApplicationController
       params.require(:order_append).permit(:total)
     end
 
-    def couponA_params
-      params.require(:order_append).permit(:couponA)
-    end
-
-    def couponB_params
-      params.require(:order_append).permit(:couponB)
+    def coupon_params
+      params.require(:order_append).permit(:first_coupon,:last_coupon)
     end
 
 
