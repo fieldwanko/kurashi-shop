@@ -11,6 +11,7 @@ class OrderAppendsController < ApplicationController
     @order_append = OrderAppend.find(params[:id])
     @address_menus = current_user.address_menus
     @my_carts = current_user.carts
+    @coupons = current_user.coupons
   end
 
   def update
@@ -33,6 +34,27 @@ class OrderAppendsController < ApplicationController
       order_append.user_id = current_user.id
       order_append.status = 1
     end
+
+    # if params[:coupon]
+    #   coupon_codeA = params[:coupon].first
+    #   coupon_codeB = prams[:coupon].last
+    #   couponA = Coupon.find(coupon_codeA)
+    #   couponB = Coupon.find(coupon_codeB)
+    #   if couponA.status == "500円引き"
+    #     order_append.price - 500
+    #     couponA.destroy
+    #   elsif couponB.status == "500円引き"
+    #     order_append.price - 500
+    #     couponB.destroy
+    #   else
+    #   end
+    # end
+
+    # if params[:coupon]
+      
+
+
+
     carts.each do |cart|
       product = cart.product
       order_detail = order_append.order_details.build

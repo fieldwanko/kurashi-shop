@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :carts, only:[:destroy]
   resources :order_details, only:[:show,:index]
   resources :order_appends, only:[:create,:show,:update]
+  resources :coupons,only:[:destroy]
   resources :products, only:[:index,:destroy,:show] do
     resource :carts, only:[:create]
   end
@@ -40,6 +41,7 @@ Rails.application.routes.draw do
     resources :users,only:[:index,:destroy]
     resources :sell_users,only:[:index,:destroy]
     resources :products,only:[:index,:destroy]
+    resources :coupons,only:[:new,:create]
   end
 
   # get "/" => "products#index",as: "root"

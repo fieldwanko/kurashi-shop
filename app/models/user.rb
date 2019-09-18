@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :carts,dependent: :destroy
   has_many :address_menus,dependent: :destroy
   has_many :order_appends, dependent: :destroy
+  has_many :coupons,dependent: :destroy
 
 
 

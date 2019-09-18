@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @user_appends = @user.order_appends
+    @coupons = @user.coupons.pluck(:status)
   end
 
   def update
