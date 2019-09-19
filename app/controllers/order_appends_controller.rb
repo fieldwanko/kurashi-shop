@@ -46,7 +46,6 @@ class OrderAppendsController < ApplicationController
       cart.destroy
     end
     order_append.pay = params[:pay].to_i
-    binding.pry
     order_append.update(coupon_params)
     coupon_codeA = order_append.first_coupon
     if coupon_codeA.nil?
