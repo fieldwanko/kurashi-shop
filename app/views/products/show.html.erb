@@ -30,12 +30,15 @@
           <p class="border pt-lg-3 pb-lg-3 bg-black text-white offset-lg-3 col-lg-6 text-center">在庫切れです</p>
         <% else %>
         <% if @product.status === 1 %>
-          <div class="col-lg-10 offset-lg-1">
+          <div class="col-lg-12">
             <%= form_for [@product,@cart],url: product_carts_path(@product.id) do |f| %>
               <p class="text-right">個数:
               <span style="padding-left: 30px;"><%= f.select :quantity, @limit %></span></p>
-              <%= f.submit "商品をカートに入れる",class: "btn btn-pink rounded col-lg-8 offset-lg-2 mt-lg-5 text-white col-lg-6" %>
+              <%= f.submit "商品をカートに入れる",class: "btn btn-pink rounded offset-lg-7 mt-lg-5 text-white col-lg-5 pt-lg-3 pb-lg-3" %>
+            <% end %>
           </div>
+            <%= form_for [@product,@request],url: product_user_requests_path(@product.id) do |f| %>
+              <%= f.submit "商品を欲しいものに追加する",class: "btn btn-sky rounded p-lg-3 col-lg-5 offset-lg-7 mt-lg-3" %>
             <% end %>
         <% else %>
             <p class="border pt-lg-3 pb-lg-3 bg-black text-white offset-lg-3 col-lg-6 text-center">入荷待ちです</p>

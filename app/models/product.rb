@@ -8,6 +8,8 @@ class Product < ApplicationRecord
   has_many :product_images,dependent: :destroy
   accepts_attachments_for :product_images,attachment: :product_image
   belongs_to :sell_user
+  has_many :user_requests,dependent: :destroy
+  has_many :users,through: :user_requests
 
 
 

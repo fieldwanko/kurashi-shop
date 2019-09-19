@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'present_appends/:id' => "present_appends#show"
   # namespace :sell_users do
   #   get 'product_arrivals/update'
   # end
@@ -22,6 +23,8 @@ Rails.application.routes.draw do
   resources :users, only:[:show,:update,:destroy] do
     resource :carts,only:[:update,:show]
     resource :address_menus,only:[:create,:new,:destroy]
+    resources :user_requests,only:[:index]
+    get "" => "user_requests#index"
   end
 
   namespace :sell_users do
@@ -29,12 +32,14 @@ Rails.application.routes.draw do
     resources :order_appends,only:[:index,:update]
   end
 
+  resources :user_requests,only:[:destroy]
   resources :carts, only:[:destroy]
   resources :order_details, only:[:show,:index]
   resources :order_appends, only:[:create,:show,:update]
   resources :coupons,only:[:destroy]
   resources :products, only:[:index,:destroy,:show] do
     resource :carts, only:[:create]
+    resource :user_requests, only:[:create]
   end
 
   namespace :admins do

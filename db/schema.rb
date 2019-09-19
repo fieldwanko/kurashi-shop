@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_18_120721) do
+ActiveRecord::Schema.define(version: 2019_09_19_034527) do
 
   create_table "address_menus", force: :cascade do |t|
     t.string "name"
@@ -73,6 +73,22 @@ ActiveRecord::Schema.define(version: 2019_09_18_120721) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "present_appends", force: :cascade do |t|
+    t.string "name"
+    t.string "details_name"
+    t.string "postal_code"
+    t.text "address"
+    t.integer "total"
+    t.integer "pay"
+    t.integer "status"
+    t.integer "user_id"
+    t.integer "give_user_id"
+    t.integer "first_coupon"
+    t.integer "last_coupon"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "product_arrivals", force: :cascade do |t|
     t.integer "stock"
     t.integer "product_id"
@@ -116,6 +132,14 @@ ActiveRecord::Schema.define(version: 2019_09_18_120721) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_sell_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_sell_users_on_reset_password_token", unique: true
+  end
+
+  create_table "user_requests", force: :cascade do |t|
+    t.integer "quantity", default: 0
+    t.integer "user_id"
+    t.integer "product_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
