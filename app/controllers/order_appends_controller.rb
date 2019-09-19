@@ -11,6 +11,7 @@ class OrderAppendsController < ApplicationController
     @order_append = OrderAppend.find(params[:id])
     @address_menus = current_user.address_menus
     @my_carts = current_user.carts
+    @coupons = current_user.coupons
   end
 
   def update
@@ -45,6 +46,20 @@ class OrderAppendsController < ApplicationController
       cart.destroy
     end
     order_append.pay = params[:pay].to_i
+    order_append.update(coupon_params)
+    coupon_codeA = order_append.first_coupon
+    if coupon_codeA.nil?
+    else
+      order_append.update(total_params)
+      couponA = Coupon.find(coupon_codeA)
+      couponA.destroy
+      if coupon_codeB = order_append.last_coupon
+          coupon_codeB = order_append.last_coupon
+          couponB = Coupon.find(coupon_codeB)
+          couponB.destroy
+      end
+    end
+
     order_append.save
     redirect_to success_path
   end
@@ -52,6 +67,10 @@ class OrderAppendsController < ApplicationController
   private
     def total_params
       params.require(:order_append).permit(:total)
+    end
+
+    def coupon_params
+      params.require(:order_append).permit(:first_coupon,:last_coupon)
     end
 
 

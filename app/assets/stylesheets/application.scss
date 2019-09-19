@@ -249,6 +249,10 @@
   margin-bottom: 0rem;
 }
 
+.mypageCoupon {
+  cursor: default;
+}
+
 /*----product/show----*/
 
 .productShowWrapper {
@@ -329,6 +333,18 @@
 
 .orderAppendJudge {
   line-height: 30px;
+}
+
+.orderCouponBox {
+  width: 22%;
+}
+
+.orderCouponBox {
+  margin-right: 4%;
+}
+
+.orderCouponBox:nth-child(6n) {
+  margin-right: 0%;
 }
 
 
@@ -448,6 +464,11 @@
 }
 
 
+/*----admin/coupon/new----*/
+
+.adminNewCoupon form{
+  width: 100%;
+}
 
 
 

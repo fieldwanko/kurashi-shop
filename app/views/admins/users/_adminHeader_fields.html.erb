@@ -13,7 +13,7 @@
       <%= link_to "商品一覧",admins_products_path,class: "headerLine font-minimum" %>
     </div>
     <div class="headerSuport col-lg-1 text-center font-minimum">
-      <p>クーポン発行</p>
+      <%= link_to "クーポン発行",new_admins_coupon_path,class: "headerLine font-minimum" %>
     </div>
     <div class="headerSuport col-lg-1 text-center">
       <%= link_to "ログアウト",destroy_admin_session_path,class: "text-main link-def font-minimum",method: :delete %>
