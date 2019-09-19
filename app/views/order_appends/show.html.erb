@@ -48,6 +48,43 @@
         </div>
       </div>
       <span class="spanPink offset-lg-5 mb-lg-5 text-pink"><%= fa_icon("arrow-down 5x") %></span>
+      <div class="appendCouponBox row mt-lg-5 mb-lg-5">
+        <% if @coupons.blank? %>
+        <% end %>
+        <div claaa="row" style="width: 100%">
+          <h2 class="mb-lg-5 mt-lg-5 btn btn-sky pl-lg-4 pr-lg-4" id="couponStart">クーポンを利用する</h2>
+        </div>
+        <div class="couponPriceField" style="display: none; width: 100%;">
+          <h2 class="col-lg-12 pb-lg-4 border-bottom mb-lg-4">クーポンを利用できます
+            <%= link_to "クーポンを利用しない",order_append_path(@order_append.id),class: "btn btn-sky pt-lg-3 pb-lg-3 ml-lg-5" %>
+            <%= link_to "クーポンを選び直す",order_append_path(@order_append.id),class: "btn btn-sky pt-lg-3 pb-lg-3 ml-lg-5" %>
+          </h2>
+          <p>クーポンは一度の購入に二枚まで使うことができます</p>
+          <% @coupons.each do |coupon| %>
+            <% if coupon.status == "50%割引" %>
+              <div class="orderCouponBox pl-lg-2 pr-lg-2 border rounded pt-lg-3 pb-lg-3 float-left">
+                <span class="couponSelect"><%= check_box_tag :coupons,coupon.id,{},{class: "coupon0"} %></span>
+                <p class="pl-lg-2 pt-lg-3"><%= coupon.status %></p>
+              </div>
+            <% elsif coupon.status == "10%割引" %>
+              <div class="orderCouponBox pl-lg-2 pr-lg-2 border rounded pt-lg-3 pb-lg-3 float-left">
+                <span class="couponSelect"><%= check_box_tag :coupons,coupon.id,{},{class: "coupon1"} %></span>
+                <p class="pl-lg-2 pt-lg-3"><%= coupon.status %></p>
+              </div>
+            <% else %>
+              <div class="orderCouponBox pl-lg-2 pr-lg-2 border rounded pt-lg-3 pb-lg-3 float-left">
+                <span class="couponSelect"><%= check_box_tag :coupons,coupon.id,{},{class: "coupon2"} %></span>
+                <p class="pl-lg-2 pt-lg-3"><%= coupon.status %></p>
+              </div>
+            <% end %>
+          <% end %>
+          <%= f.hidden_field :first_coupon,value: "",id: "couponSelectArray" %>
+          <%= f.hidden_field :last_coupon,value: "",id: "couponSelectArray2" %>
+        </div>
+      </div>
+      <div class="row">
+        <span class="spanPink offset-lg-5 mb-lg-5 text-pink"><%= fa_icon("arrow-down 5x") %></span>
+      </div>
       <div class="orderAppendCheck mt-lg-5 mb-lg-5">
         <h2 class="mt-lg-5 pb-lg-3 border-bottom">購入商品確認</h2>
 
@@ -69,8 +106,17 @@
         <p class="offset-lg-1 col-lg-5 orderAppendJudge border p-lg-3">一度購入されました商品は、返品することができません<br>
         ご確認の上、購入をお願い致します。</p>
         <p class="btn col-lg-4 offset-lg-2 border-bottom">合計金額:
-          <span class="font-bold"><%= @order_append.total %></span>円</p>
+          <input class="font-bold" id="readyTotal" readonly="readonly" value=<%= @order_append.total %> >円</p>
+        <div class="row" style="width: 100%;">
+          <p class="col-lg-4 offset-lg-9">使用クーポン数<input type="number" value="0" class="col-lg-3" readonly="readonly" id="couponLimit"></p>
+        </div>
+          <%= f.hidden_field :total,value: "",id: "couponTotalPrice" %>
       </div>
+      <!-- <div class="couponPriceBox row" style="display: none;">
+        <p class="btn col-lg-4 offset-lg-8 border-bottom">クーポン適用後金額:
+          <span class="font-bold"><input value="" id="couponPrice" placeholder="自動計算" readonly="readonly" ></span>円</p>
+        <%#= f.hidden_field :total,value: "",id: "couponTotalPrice" %>
+      </div> -->
       <div class="row mt-lg-5 mb-lg-5">
         <%= f.submit "購入確定",class:"btn col-lg-4 offset-lg-8 btn-pink" %>
       </div>
