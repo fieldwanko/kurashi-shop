@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @request = UserRequest.new
     @sell_user = @product.sell_user
     @fee = 1.10
     @cart = Cart.new

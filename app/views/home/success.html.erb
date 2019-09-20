@@ -1,4 +1,14 @@
 <%= render "/products/userHeader_fields" %>
-<div class="container">
-  <p>購入完了</p>
+
+<div class="success">
+  <div class="container">
+    <h1 class="text-center"><img src="/success.jpeg" alt="写真" width="96" height="65">ご購入ありがとうございます<img src="/success.jpeg" class="successImage" alt="写真" width="96" height="65"></h1>
+    <h4 class="text-center">最近巷ではボードゲームが流行っています</h4>
+    <h4 class="text-center">そのため、Kurashi-Shopでもボードゲームの販売を強化していく予定です</h4>
+    <h4 class="text-center">将棋や囲碁、人生ゲームや人狼まで。気になるアノ子と。ボードゲームしませんか?</h4>
+    <h4>Kurashi-Shopは、ボードゲームの発展を応援します。</h4>
+  </div>
+  <div class="success-button mt-lg-5 text-center">
+    <%= link_to "商品一覧に戻る", products_path, class: "btn btn-pink" %>
+  </div>
 </div>
