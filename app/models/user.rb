@@ -12,6 +12,8 @@ class User < ApplicationRecord
   has_many :user_requests,dependent: :destroy
   has_many :products,through: :user_requests
 
+  attribute :secret_key, :string, default: SecureRandom.hex(10)
+
 
 
 end

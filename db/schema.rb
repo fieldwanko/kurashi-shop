@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_19_034527) do
+ActiveRecord::Schema.define(version: 2019_09_20_110143) do
 
   create_table "address_menus", force: :cascade do |t|
     t.string "name"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_09_19_034527) do
     t.integer "quantity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "present_append_id"
   end
 
   create_table "present_appends", force: :cascade do |t|
@@ -87,6 +88,7 @@ ActiveRecord::Schema.define(version: 2019_09_19_034527) do
     t.integer "last_coupon"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "product_num"
   end
 
   create_table "product_arrivals", force: :cascade do |t|
@@ -163,6 +165,7 @@ ActiveRecord::Schema.define(version: 2019_09_19_034527) do
     t.string "tel"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "secret_key"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

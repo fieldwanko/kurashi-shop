@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'present_appends/:id' => "present_appends#show"
-  # namespace :sell_users do
-  #   get 'product_arrivals/update'
-  # end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   devise_for :sell_users,controllers: {
   sessions:   'sell_users/sessions' ,
@@ -23,8 +19,7 @@ Rails.application.routes.draw do
   resources :users, only:[:show,:update,:destroy] do
     resource :carts,only:[:update,:show]
     resource :address_menus,only:[:create,:new,:destroy]
-    resources :user_requests,only:[:index]
-    get "" => "user_requests#index"
+    get "/:seacret_key/user_requests" => "user_requests#index",as: "user_requests"
   end
 
   namespace :sell_users do
@@ -36,6 +31,7 @@ Rails.application.routes.draw do
   resources :carts, only:[:destroy]
   resources :order_details, only:[:show,:index]
   resources :order_appends, only:[:create,:show,:update]
+  resources :present_appends, only:[:create,:show,:update]
   resources :coupons,only:[:destroy]
   resources :products, only:[:index,:destroy,:show] do
     resource :carts, only:[:create]
