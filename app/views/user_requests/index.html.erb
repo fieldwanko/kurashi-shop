@@ -1,0 +1,50 @@
+<%= render "/products/userHeader_fields" %>
+<div class="userRequestsWrapper pt-lg-5 mb-lg-5">
+  <div class="container">
+    <div class="row">
+      <p class="offset-lg-9 col-lg-3 p-lg-3 border rounded"><span class="mr-lg-3">共有key</span><%= @user.secret_key %></p>
+    </div>
+    <h2 class="text-center pb-lg-3 border-bottom mt-lg-5"><span class="font-bold"><%= @user.user_name %></span>さんの欲しいものリスト</h2>
+    <% if @requests.blank? %>
+      <h4 class="text-center mt-lg-5">登録されていません</h4>
+    <% else %>
+      <table class="table table-striped table-hover">
+        <thead class="thead-light">
+          <tr>
+            <th>商品イメージ</th>
+            <th>商品</th>
+            <th>数量</th>
+            <th>合計金額</th>
+            <% if @user.id != current_user.id %>
+            <th>プレゼント</th>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <% @requests.each do |request| %>
+          <% @product = request.product %>
+            <tr class="table-text requestCheck">
+              <td>写真を入れる</td>
+              <td class="text-limit"><%= @product.title %></td>
+              <td><%= request.quantity %></td>
+              <td><%= @product.price * request.quantity %></td>
+              <% if @user.id != current_user.id %>
+                <% total = (@product.price) * (request.quantity) %>
+                <td>
+                  <%= form_for @present_append,url: present_appends_path do |f| %>
+                  <%= f.hidden_field :total,value: total %>
+                  <%= f.hidden_field :user_id,value: @user.id %>
+                  <%= f.hidden_field :product_num,value: @product.id %>
+                  <%= f.submit "プレゼントする",class: "btn btn-pink col-lg-8 offset-lg-3 mt-lg-5" %>
+                <% end %>
+                </td>
+                <!-- <td><%#= link_to "プレゼントする",new_present_append_path,class: "btn btn-sky",id: request.id %></td> -->
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
+  </div>
+</div>
+<!-- http://localhost:3000/users/6/2834f5e039e69afe9d15/user_requests -->
