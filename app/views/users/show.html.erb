@@ -12,6 +12,7 @@
           <span class="ml-lg-3"> <%= link_to "複数住所を登録",new_user_address_menus_path(@user.id),class: "btn btn-pink pl-lg-2 pr-lg-2 link-style" %>
           </li>
           <span class="ml-lg-2 btn btn-sky createFormBtn pl-lg-3 pr-lg-3">基本情報変更</span>
+          <span class="ml-lg-2 pl-lg-3 pr-lg-3"><%= link_to "欲しいものリスト",user_user_requests_path(@user.id, @user.secret_key) ,class: "btn btn-gray pl-lg-2 pr-lg-2 link-style" %></span>
           <span>
           <%= f.submit "変更を保存",class: "btn btn-sky pl-lg-3 pr-lg-3 ml-lg-1 createForm display-none" %>
           </span>

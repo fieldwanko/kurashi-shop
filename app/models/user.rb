@@ -9,6 +9,10 @@ class User < ApplicationRecord
   has_many :address_menus,dependent: :destroy
   has_many :order_appends, dependent: :destroy
   has_many :coupons,dependent: :destroy
+  has_many :user_requests,dependent: :destroy
+  has_many :products,through: :user_requests
+
+  attribute :secret_key, :string, default: SecureRandom.hex(10)
 
 
 

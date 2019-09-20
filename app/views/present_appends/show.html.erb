@@ -1,0 +1,87 @@
+<%= render "/products/userHeader_fields" %>
+
+<div class="orderAppendWrapper mb-lg-5">
+  <div class="container">
+    <%= form_for @present_append,url: present_append_path(@present_append.id) do |f| %>
+      <div class="orderAppendPay mb-lg-5 mt-lg-5">
+        <h2 class="mt-lg-5 pb-lg-3 border-bottom">支払い方法</h2>
+        <div class="orderPayfield">
+          <div class="row mb-lg-3">
+            <span class="col-lg-1 offset-lg-1 text-right"><%= radio_button_tag :pay,1,:checked %></span>
+            <h3 class="col-lg-4">銀行振込</h3>
+          </div>
+          <div class="row mb-lg-3">
+            <span class="col-lg-1 offset-lg-1 text-right"><%= radio_button_tag :pay,2 %></span>
+            <h3 class="col-lg-4">クレジット決済</h3>
+          </div>
+        </div>
+      </div>
+      <span class="spanPink offset-lg-5 mb-lg-5 text-pink"><%= fa_icon("arrow-down 5x") %></span>
+      <div class="appendCouponBox row mt-lg-5 mb-lg-5">
+        <% if @coupons.blank? %>
+        <% end %>
+        <div claaa="row" style="width: 100%">
+          <h2 class="mb-lg-5 mt-lg-5 btn btn-sky pl-lg-4 pr-lg-4" id="couponStart">クーポンを利用する</h2>
+        </div>
+        <div class="couponPriceField" style="display: none; width: 100%;">
+          <h2 class="col-lg-12 pb-lg-4 border-bottom mb-lg-4">クーポンを利用できます
+            <%= link_to "クーポンを利用しない",present_append_path(@present_append.id),class: "btn btn-sky pt-lg-3 pb-lg-3 ml-lg-5" %>
+            <%= link_to "クーポンを選び直す",present_append_path(@present_append.id),class: "btn btn-sky pt-lg-3 pb-lg-3 ml-lg-5" %>
+          </h2>
+          <p>クーポンは一度の購入に二枚まで使うことができます</p>
+          <% @coupons.each do |coupon| %>
+            <% if coupon.status == "50%割引" %>
+              <div class="orderCouponBox pl-lg-2 pr-lg-2 border rounded pt-lg-3 pb-lg-3 float-left">
+                <span class="couponSelect"><%= check_box_tag :coupons,coupon.id,{},{class: "coupon0"} %></span>
+                <p class="pl-lg-2 pt-lg-3"><%= coupon.status %></p>
+              </div>
+            <% elsif coupon.status == "10%割引" %>
+              <div class="orderCouponBox pl-lg-2 pr-lg-2 border rounded pt-lg-3 pb-lg-3 float-left">
+                <span class="couponSelect"><%= check_box_tag :coupons,coupon.id,{},{class: "coupon1"} %></span>
+                <p class="pl-lg-2 pt-lg-3"><%= coupon.status %></p>
+              </div>
+            <% else %>
+              <div class="orderCouponBox pl-lg-2 pr-lg-2 border rounded pt-lg-3 pb-lg-3 float-left">
+                <span class="couponSelect"><%= check_box_tag :coupons,coupon.id,{},{class: "coupon2"} %></span>
+                <p class="pl-lg-2 pt-lg-3"><%= coupon.status %></p>
+              </div>
+            <% end %>
+          <% end %>
+          <%= f.hidden_field :first_coupon,value: "",id: "couponSelectArray" %>
+          <%= f.hidden_field :last_coupon,value: "",id: "couponSelectArray2" %>
+        </div>
+      </div>
+      <div class="row">
+        <span class="spanPink offset-lg-5 mb-lg-5 text-pink"><%= fa_icon("arrow-down 5x") %></span>
+      </div>
+      <div class="orderAppendCheck mt-lg-5 mb-lg-5">
+        <h2 class="mt-lg-5 pb-lg-3 border-bottom">購入商品確認</h2>
+          <div class="cartItemBox pt-lg-3 pb-lg-3 border rounded row bg-white mt-lg-4">
+          <% if @product.product_images.first %>
+            <%= attachment_image_tag @product.product_images.first,:product_image,class:"myCartImage col-lg-2 image-cover rounded" %>
+          <% else %>
+            <img src="/noimage-photo.png" class="myCartImage col-lg-2 image-cover rounded">
+          <% end %>
+            <span class="col-lg-6"><%= @product.title %></span>
+            <p class="col-lg-4">￥<%= @product.price %>円</p>
+            <span class="countQuantity">購入数:</span>
+              <span class="quantityPoint"><%= @request.quantity %></span>
+          </div>
+        <%# end %>
+      </div>
+      <div class="row mt-lg-5 mb-lg-5">
+        <p class="offset-lg-1 col-lg-5 orderAppendJudge border p-lg-3">一度購入されました商品は、返品することができません<br>
+        ご確認の上、購入をお願い致します。</p>
+        <p class="btn col-lg-4 offset-lg-2 border-bottom">合計金額:
+          <input class="font-bold" id="readyTotal" readonly="readonly" value=<%= @present_append.total %> >円</p>
+        <div class="row" style="width: 100%;">
+          <p class="col-lg-4 offset-lg-9">使用クーポン数<input type="number" value="0" class="col-lg-3" readonly="readonly" id="couponLimit"></p>
+        </div>
+          <%= f.hidden_field :total,value: "",id: "couponTotalPrice" %>
+      </div>
+      <div class="row mt-lg-5 mb-lg-5">
+        <%= f.submit "購入確定",class:"btn col-lg-4 offset-lg-8 btn-pink" %>
+      </div>
+    <% end %>
+  </div>
+</div>
