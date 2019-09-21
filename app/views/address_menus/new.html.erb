@@ -1,8 +1,8 @@
+<%= render "/products/userHeader_fields" %>
 <div class="userAddressWrapper">
   <div class="container">
     <h2 class="pt-lg-5">所有登録住所</h2>
-    <p>所有住所は２つの住所を登録することができます</p>
-      <%= link_to "マイページへ戻る",user_path(@user.id),class: "btn btn-sky  link-def offset-lg-10" %>
+    <p>所有住所は２つまで登録することができます</p>
     <div class="userAddressBox mt-lg-5">
       <% if @user.address_menus.count >= 1 %>
         <% @addresses.each do |address| %>

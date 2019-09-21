@@ -1,0 +1,159 @@
+<%= render "/products/userHeader_fields" %>
+<div class= "topIndex">
+  <div class="container-fluid">
+    <div class="topIndexMain crearfix mb-lg-4">
+      <div class="topIndexLeft p-lg-5 float-left">
+        <h2 class="subTitleMode">Kurahi Shop</h2>
+        <h2>finally start this Web Site</h2>
+        <h2>Let's start Kurashi Shop</h2>
+        <p>あらゆる商品を用意しております<br>
+        お得なクーポンも随時配布しております<br>
+        Kurashi Shopを利用してみませんか？</p>
+      </div>
+      <div class="topIndexRight float-left">
+        <img src="top.jpg" class="topIndexMainPhoto" style="width: 100%;height: 100%;">
+      </div>
+    </div>
+    <div class="topIndexSelect row mb-lg-5">
+      <div class="selectBox text-center">
+        <img src="/product1.jpg" class="imgSize topLearnImage">
+        <h3>Colorful chess</h3>
+        <p class="mt-lg-5">遊んでよし。飾ってよし。<br>
+        とてもおしゃれなチェスです。</p>
+      </div>
+      <div class="selectBox text-center">
+        <img src="/product2.jpg" class="imgSize topLearnImage">
+        <h3>Black Jack セット</h3>
+        <p class="mt-lg-5">何事も準備が大事。<br>
+        カジノに行く前に準備しておきませんか？</p>
+      </div>
+      <div class="selectBox text-center">
+        <img src="product3.jpg" class="imgSize topLearnImage">
+        <h3>太古のボードゲーム</h3>
+        <p class="mt-lg-5 font-minimum">こちらかなり昔のボードゲームです<br>
+        駒がただの石じゃないかとクレームが来ますが<br>それは違います<br>
+        太古の駒です。</p>
+      </div>
+    </div>
+    <div class= "topIndexBest border-top border-bottom">
+      <div class="row">
+        <h1 class="col-lg-6 offset-lg-3 text-center mt-lg-5 mb-lg-5 font-bold">商品の一覧を見てみよう</h1>
+      </div>
+      <div class="row">
+        <%= link_to "All Production",products_path,class: "col-lg-4 offset-lg-4 mt-lg-5 text-center mb-lg-5 rounded btn btn-pink display3 pt-lg-3 pb-lg-3 pl-lg-5 pr-lg-5" %>
+      </div>
+    </div>
+    <div class="topIndexCoupon bg-gray mt-lg-5 crearfix">
+      <div class="topCouponLeft float-left">
+        <div class="titleCoupon">
+          <h2 class="text-left display-3 ml-lg-3 mt-lg-3 text-white">Get Coupon</h2>
+        </div>
+        <div class="topCouponDetail">
+          <p class="topCouponComment ml-lg-4 mt-lg-5 text-white">もらえるクーポン！<br>Kurahi Shopで購入したことのある方には<br>
+          随時抽選でクーポンを配布しております。<br>
+          マイページからクーポンの有無を確認できます。<br>
+          見てみましょう！</p>
+        </div>
+        <% if user_signed_in? %>
+          <div class="topCouponMypage">
+              <%= link_to "Go to Mypage",user_path(current_user),class: "btn btn-sky float-right mr-lg-5" %>
+          </div>
+        <% else %>
+          <div class="topCouponMypage">
+              <%= link_to "Go to Mypage",new_user_registration_path,class: "btn btn-sky float-right mr-lg-5" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="topCouponRight float-left">
+        <div class="topCouponImage rounded-circle mt-lg-5">
+        </div>
+      </div>
+    </div>
+    <div class="topIndexKoko crearfix mt-lg-4 ml-lg-4 mb-lg-5">
+      <div class="topKokoLeft float-left">
+        <div class="fieldkokoTitle">
+          <h1 class="startFieldkoko">Let's Start <span class="ml-lg-5 font-sans pt-lg-4">Fieldkoko</span></h1>
+        </div>
+        <div class="fieldkokoComment mt-lg-5">
+          <p class="font-sans"><span class="text-koko">fieldkoko<span>とは全ての外国語を学習する人のために作られたアプリケーションです。<br>あなたの学習言語を母国語とする人たちと、<span class="text-sky">チャット</span>を通して言語を教え合ったり<br>
+            <span class="text-sky">イベント</span>,<span class="text-sky">勉強会</span>などに募集、参加したり、様々な人と友達になることができます。</p>
+        </div>
+      </div>
+      <div class="topKokoRight float-left">
+        <img src="fieldkoko.png" class="imgSizeField image-cover ml-lg-5">
+      </div>
+    </div>
+    <div class="topKokoDirect mb-lg-5">
+      <div class="topKokoMail row mt-lg-5">
+        <div class="col-lg-4 offset-lg-4 text-center p-lg-3">
+          <a href="#" class="magazineTitle border btn btn-main ml-lg-5">Get Mail Magazine</a>
+        </div>
+      </div>
+      <div class="row">
+          <a href="#" class="col-lg-1 offset-lg-5">
+            <%= fa_icon("twitter-square 3x") %></a>
+          <a href="#" class="col-lg-1">
+            <%= fa_icon("instagram 3x") %>
+          </a>
+          <a href="#" class="col-lg-1">
+            <%= fa_icon("facebook-square 3x") %>
+          </a>
+      </div>
+    </div>
+    <div class="topIndexCoupon bg-gray mt-lg-5 crearfix">
+      <div class="topCouponLeft float-left">
+        <div class="titleCoupon">
+          <h2 class="text-left display-3 ml-lg-3 mt-lg-3 text-white">Present</h2>
+        </div>
+        <div class="topCouponDetail">
+          <p class="topCouponComment ml-lg-4 mt-lg-5 text-white">プレゼントしたい人からKey URLを教えてもらえば<br>欲しいものリストからプレゼントする事ができます！<br>
+          同時に、プレゼントして欲しい商品は<br>
+          欲しいものリストに追加しよう！<br>
+          欲しいものリストは、マイページから確認できます。</p>
+        </div>
+        <% if user_signed_in? %>
+          <div class="topCouponMypage">
+              <%= link_to "Go to Mypage",user_path(current_user),class: "btn btn-sky float-right mr-lg-5" %>
+          </div>
+        <% else %>
+          <div class="topCouponMypage">
+              <%= link_to "Go to Mypage",new_user_registration_path,class: "btn btn-sky float-right mr-lg-5" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="topCouponRight float-left">
+        <div class="topGiftImage rounded-circle mt-lg-5">
+        </div>
+      </div>
+    </div>
+    <div class="topIndexForm mt-lg-5">
+      <div class="topFormTitle row">
+        <h2 class="text-white ml-lg-4 mt-lg-3">Form & Company</h2>
+      </div>
+      <div class="topFormList row mt-lg-4">
+        <div class="col-lg-3 offset-lg-1">
+          <h3>Kurashi Shopについて</h3>
+          <p>Kurashi Shopとは</p>
+          <p>Kurashi Shopメンバーシップ</p>
+        </div>
+        <div class="col-lg-2 offset-lg-1">
+          <h3>ご注文方法</h3>
+          <p>商品購入までの流れ</p>
+          <p>支払い方法</p>
+          <p>配送について</p>
+          <p>返品について</p>
+          <p>クーポンについて</p>
+          <p>プレゼントについて</p>
+        </div>
+        <div class="col-lg-3 offset-lg-1">
+          <h4>お問い合わせ・営業時間</h4>
+          <p>よくある質問</p>
+          <p>お問い合わせ</p>
+          <p>営業時間<br>
+            10:00 ~ 17:00<br>
+          (土、日、祝日、年末年始を除く)</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,7 +3,7 @@
 <div class="productShowWrapper clearfix mt-lg-5">
   <%= render "sidebar_fields" %>
   <div class="productShowMain float-left pr-lg-3 pl-lg-3">
-    <div class="noteShowPhoto border-top border-bottom p-lg-2 mt-lg-3">
+    <div class="productShowPhoto border-top border-bottom p-lg-2 mt-lg-3">
       <% @product.product_images.each do |image| %>
         <%= attachment_image_tag image,:product_image,style:"width: 180px;height: 100%;" %>
       <% end %>
@@ -18,7 +18,7 @@
       <div>
         <h2 class="font-bold">商品情報</h2>
       </div>
-      <div class="noteShowContent border p-lg-2" style="width: 100%; height: 300px;">
+      <div class="productShowContent border p-lg-2" style="width: 100%; height: 300px;">
         <%= @product.content %>
       </div>
       <div class="row">
