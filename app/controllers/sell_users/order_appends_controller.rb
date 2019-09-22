@@ -8,6 +8,7 @@ class SellUsers::OrderAppendsController < ApplicationController
   def update
     append = OrderAppend.find(params[:id])
     append.update(append_params)
+    flash[:notice] = "更新完了"
     redirect_to sell_users_order_appends_path
   end
 

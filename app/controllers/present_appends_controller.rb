@@ -1,4 +1,5 @@
 class PresentAppendsController < ApplicationController
+  before_action :authenticate_user!
   def show
     @present_append = PresentAppend.find(params[:id])
     @user = User.find(@present_append.user_id)
@@ -47,8 +48,13 @@ class PresentAppendsController < ApplicationController
           couponB.destroy
       end
     end
-    present_append.save
-    redirect_to success_path
+    if present_append.save
+       flash[:notice] = "購入完了"
+       request.destroy
+       redirect_to success_path
+    else
+      render :show
+    end
   end
 
   private

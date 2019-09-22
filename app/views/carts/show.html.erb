@@ -9,14 +9,24 @@
         <div class="cartDetailLeft float-left">
           <% @my_carts.each do |cart| %>
             <div class="cartItemBox pt-lg-3 pb-lg-3 border rounded row bg-white mt-lg-4">
-              <% if cart.product.product_images.first %>
-                <%= attachment_image_tag cart.product.product_images.first,:product_image,class:"myCartImage col-lg-2 image-cover rounded" %>
+              <% if cart.product.product_arrival.stock == 0 || cart.product.status != 1 %>
+                <% if cart.product.product_images.first %>
+                  <%= attachment_image_tag cart.product.product_images.first,:product_image,class:"myCartImage col-lg-2 image-cover rounded" %>
+                <% else %>
+                  <img src="/noimage-photo.png" class="myCartImage col-lg-2 image-cover rounded">
+                <% end %>
+                <span class="col-lg-6"><%= cart.product.title %></span>
+                <%= link_to "削除",cart_path(cart.id),class: "cartCancel col-lg-1 offset-lg-1 btn btn-danger link-style",method: :delete %>
+                <p class="text-red must mustDelete">この商品は在庫切れのため、削除をお願い致します</p>
               <% else %>
-                <img src="/noimage-photo.png" class="myCartImage col-lg-2 image-cover rounded">
-              <% end %>
+                <% if cart.product.product_images.first %>
+                  <%= attachment_image_tag cart.product.product_images.first,:product_image,class:"myCartImage col-lg-2 image-cover rounded" %>
+                <% else %>
+                  <img src="/noimage-photo.png" class="myCartImage col-lg-2 image-cover rounded">
+                <% end %>
                 <span class="col-lg-6"><%= cart.product.title %></span>
                 <p class="col-lg-4">￥<%= cart.product.price %>円</p>
-                <span class="countQuantity">購入数:</span>
+                <span class="countQuantity must">購入数:</span>
                 <span class="quantityPoint">
                   <% @limit = [] %>
                   <% @limit.clear %>
@@ -30,6 +40,7 @@
                   <% end %>
                 </span>
                 <%= link_to "削除",cart_path(cart.id),class: "cartCancel col-lg-1 offset-lg-1 btn btn-danger link-style","data-confirm" => "本当に削除しますか？",method: :delete %>
+              <% end %>
             </div>
           <% end %>
         </div>
@@ -43,7 +54,7 @@
             <% total = get_price(@my_carts) %>
             <%= form_for @order_append do |f| %>
               <%= f.hidden_field :total,value: total %>
-              <%= f.submit "購入画面へ進む",class: "btn btn-pink col-lg-8 offset-lg-3 mt-lg-5" %>
+              <%= f.submit "購入画面へ進む",class: "btn btn-pink col-lg-8 offset-lg-3 mt-lg-5","data-confirm" => "本当に購入画面へ進みますか？" %>
             <% end %>
           </div>
         </div>
@@ -57,12 +68,4 @@
   </div>
   <% end %>
 </div>
-
-
-
-
-
-
-
-
 

@@ -1,4 +1,5 @@
 class OrderDetailsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @order_appends = OrderAppend.where(user_id: current_user.id,status: true).order(created_at: :desc)

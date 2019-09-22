@@ -92,6 +92,10 @@
   font-weight: bold;
 }
 
+.miniTd {
+  width: 180px;
+}
+
 .flex {
   display: flex;
 }
@@ -124,6 +128,22 @@
   border: 3px solid #cccccc;
 }
 
+.teachBox {
+  height: 100px;
+  width: 25%;
+  background-color: #fcfcfc;
+  border: 3px solid pink;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  z-index: 2;
+  position: fixed;
+}
+
+.deleteTeach {
+  font-size: 30px;
+}
+
 /*----共通-----*/
 
 /*-----header-----*/
@@ -142,6 +162,17 @@
   }
 }
 
+.headerHover i{
+  color: red;
+}
+
+.headerHover {
+  color: red;
+}
+
+.text-red {
+  color: red;
+}
 
 
 /*-----sell_user/Top(sell_item)-----*/
@@ -260,6 +291,7 @@
 
 .mypageCoupon {
   cursor: default;
+  text-align: center;
 }
 
 /*----product/show----*/

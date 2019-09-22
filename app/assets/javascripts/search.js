@@ -1,3 +1,4 @@
+// 複数条件がある検索の場合（sell_user)
 $(function(){
   $('.optionA').click(function(){
     $('.searchA').fadeIn();
@@ -46,3 +47,6 @@ $(function(){
     $('.optionC').removeClass("btn-sky");
   });
 });
+
+
+

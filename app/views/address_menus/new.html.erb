@@ -12,7 +12,7 @@
               <div class="clearfix">
                 <h4 class="ml-lg-4 mb-lg-3"><%= address.name %></h4>
                 <p class="ml-lg-5"><span class="mr-lg-3">〒</span><%= address.postal_code %></p>
-                <p class="ml-lg-5"><span class="mr-lg-3"><i class="fas fa-home"></i></span><%= address.address %></p>
+                <p class="ml-lg-5"><span class="mr-lg-3"><%= fa_icon("home 2x") %></span><%= address.address %></p>
                 <%= link_to "削除",user_address_menus_path(address.id),method: :delete,class: "btn btn-danger float-right","data-confirm" => "本当に削除しますか？" %>
               </div>
             </div>
@@ -26,30 +26,31 @@
     </div>
     <% if @user.address_menus.count <= 1 %>
       <div class="userAddAddress">
-        <button class="addAddressBtn btn-sky rounded text-center pl-lg-4 pr-lg-4 pt-lg-3 pb-lg-3 mt-lg-5 createFormBtn cursor">住所登録フォーム</button>
-        <div class="createForm" style="display: none;">
+        <!-- <button class="addAddressBtn btn-sky rounded text-center pl-lg-4 pr-lg-4 pt-lg-3 pb-lg-3 mt-lg-5 createFormBtn cursor">住所登録フォーム</button> -->
+        <div class="createForm">
           <%= form_for @address,url: user_address_menus_path(@user.id) do |f| %>
+          <%= render 'layouts/error_messages', model: f.object %>
           <div class="AddressCreate row ml-lg-5 mr-lg-5 mt-lg-4 mb-lg-5">
             <div class="col-lg-6 offset-lg-3 border rounded p-lg-4">
               <ul class="link-style">
                 <li class="mb-lg-4">
                   <p>お名前</p>
-                  <%= f.text_field :name,style: "width: 50%;" %>
+                  <%= f.text_field :name,style: "width: 50%;",required: true %>
                 </li>
                 <li class="mb-lg-4">
                   <p>お名前（かな）</p>
-                  <%= f.text_field :details_name,style: "width: 50%;" %>
+                  <%= f.text_field :details_name,style: "width: 50%;",required:true %>
                 </li>
                 <li class="mb-lg-4">
                   <p class="font-sans"><span class="mr-lg-3">〒</span>郵便番号(ハイフン無し)</p>
-                  <%= f.text_field :postal_code,style: "width: 50%;"  %>
+                  <%= f.text_field :postal_code,style: "width: 50%;",required:true  %>
                 </li>
                 <li class="mb-lg-4">
-                  <p><span class="mr-lg-3"><i class="fas fa-home"></i></span>住所</p>
-                  <%= f.text_field :address,style: "width: 100%;",class: "font-sans" %>
+                  <p><span class="mr-lg-3"><%= fa_icon("home 2x") %></span>住所</p>
+                  <%= f.text_field :address,style: "width: 100%;",class: "font-sans",required: true %>
                 </li>
                 <li class="clearfix">
-                  <%= f.submit "住所を追加する",class: "btn btn-sky float-right" %>
+                  <%= f.submit "住所を追加する",class: "btn btn-sky float-right","data-confirm" => "住所追加を確定しますか？" %>
                 </li>
               </ul>
             </div>

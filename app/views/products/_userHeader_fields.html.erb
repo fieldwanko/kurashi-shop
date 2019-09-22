@@ -18,7 +18,11 @@
         </div>
         <div class="headerSuport col-lg-1 text-center">
           <%= link_to user_carts_path(current_user.id),class: "headerLine link-style" do %>
+          <% if current_user.carts.count > 0 %>
+            <span class="headerText headerHover"><%= fa_icon("shopping-cart 2x") %><br><%= current_user.carts.count %>商品</span>
+          <% else %>
             <span class="headerText"><%= fa_icon("shopping-cart 2x") %><br>カート</span>
+          <% end %>
           <% end %>
         </div>
         <div class="headerSuport col-lg-1 text-center">
@@ -27,7 +31,7 @@
           <% end %>
         </div>
         <div class="headerSuport col-lg-1 text-center">
-          <%= link_to destroy_user_session_path,class: "headerLine link-style",method: :delete do %>
+          <%= link_to destroy_user_session_path,class: "headerLine link-style","data-confirm" => "本当にログアウトしますか？", method: :delete do %>
             <span class="headerText"><%= fa_icon("sign-out 2x") %><br>ログアウト</span>
           <% end %>
         </div>
