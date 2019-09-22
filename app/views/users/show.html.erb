@@ -7,13 +7,13 @@
     </div>
       <div class="mypageLeft border-right float-left mt-lg-5">
         <%= form_for @user,url: user_path(@user.id) do |f| %>
+        <%#= render 'layouts/error_messages', model: f.object %>
         <div class="row mb-lg-5">
           <span><%= link_to "購入履歴",order_details_path,class: "btn btn-green pl-lg-2 pr-lg-2 rounded ml-lg-3" %></span>
           <span class="ml-lg-3"> <%= link_to "複数住所を登録",new_user_address_menus_path(@user.id),class: "btn btn-pink pl-lg-2 pr-lg-2 link-style" %>
-          </li>
-          <span class="ml-lg-2 btn btn-sky createFormBtn pl-lg-3 pr-lg-3">基本情報変更</span>
+          </span>
           <span class="ml-lg-2 pl-lg-3 pr-lg-3"><%= link_to "欲しいものリスト",user_user_requests_path(@user.id, @user.secret_key) ,class: "btn btn-gray pl-lg-2 pr-lg-2 link-style" %></span>
-          <span>
+          <span class="ml-lg-2 btn btn-sky createFormBtn pl-lg-3 pr-lg-3">基本情報変更</span>
           <%= f.submit "変更を保存",class: "btn btn-sky pl-lg-3 pr-lg-3 ml-lg-1 createForm display-none" %>
           </span>
         </div>
@@ -47,9 +47,10 @@
         </div>
         <div class="mypageRightPoint p-lg-4 row">
         <div class="col-lg-8">
-          <p class="btn-sky rounded btn mypageCoupon mb-lg-3">50%割引クーポン</p>
-          <p class="btn-pink rounded btn mypageCoupon mb-lg-3">10%割引クーポン</p>
-          <p class="btn-gray rounded btn mypageCoupon mb-lg-3">500円引きクーポン</p>
+          <p class="mypageCoupon btn-sky rounded mb-lg-3 p-lg-2">50%割引クーポン</p>
+          <p class="mypageCoupon btn-pink rounded mb-lg-3 p-lg-2">10%割引クーポン</p>
+          <p class="mypageCoupon btn-gray rounded mb-lg-3 p-lg-2">500円引きクーポン</p>
+          <%= link_to "退会する",user_path(@user.id),class: "mypageCoupon btn-danger btn rounded mb-lg-3 p-lg-2 mt-lg-3 ml-lg-5",method: :delete,"data-confirm" => "本当に退会しますか？" %>
         </div>
         <div class="col-lg-3 offset-lg-1">
           <h3 class="pt-lg-1 pb-lg-2">×<%= @coupons.count("50%割引") %></h3>

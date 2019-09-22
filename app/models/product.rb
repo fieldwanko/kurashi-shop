@@ -11,6 +11,10 @@ class Product < ApplicationRecord
   has_many :user_requests,dependent: :destroy
   has_many :users,through: :user_requests
 
+  validates :title,presence: true
+  validates :content,presence: true,length: { in:20..300 }
+  validates :price,presence: true, numericality: { greater_than_or_equal_to: 100 }
+
 
 
 end

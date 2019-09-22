@@ -5,12 +5,12 @@
 
         <div class="field">
           <%= f.label :email %><br />
-          <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"col-lg-10 offset-lg-1 rounded" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",class:"col-lg-10 offset-lg-1 rounded",required: true %>
         </div>
 
         <div class="field mt-lg-3">
           <%= f.label :password %><br />
-          <%= f.password_field :password, autocomplete: "current-password",class: "col-lg-10 offset-lg-1 rounded" %>
+          <%= f.password_field :password, autocomplete: "current-password",class: "col-lg-10 offset-lg-1 rounded",required: true %>
         </div>
 
         <div class="actions">

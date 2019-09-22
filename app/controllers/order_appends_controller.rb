@@ -1,4 +1,6 @@
 class OrderAppendsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :ensure_correct_order,only:[:show]
 
   def create
     order_append = OrderAppend.new(total_params)
@@ -60,9 +62,26 @@ class OrderAppendsController < ApplicationController
       end
     end
 
-    order_append.save
-    redirect_to success_path
+    if order_append.save
+      flash[:notice] = "購入完了"
+      redirect_to success_path
+    else
+      @order_append = OrderAppend.find(params[:id])
+      @address_menus = current_user.address_menus
+      @my_carts = current_user.carts
+      @coupons = current_user.coupons
+      render :show
+    end
   end
+
+  def ensure_correct_order
+    @order = OrderAppend.find(params[:id])
+    if current_user.order_appends.where(id: @order.id).present?
+    else
+      redirect_to user_path(current_user.id)
+    end
+  end
+
 
   private
     def total_params

@@ -1,4 +1,5 @@
 class CartsController < ApplicationController
+  before_action :authenticate_user!
 
   def show
     @my_carts = current_user.carts
@@ -13,21 +14,38 @@ class CartsController < ApplicationController
     @cart.quantity += params[:cart][:quantity].to_i
     if @cart.quantity >= @product.product_arrival.stock
        @cart.quantity = @product.product_arrival.stock
+       flash[:notice] = "在庫の上限を超えたので、カート数量が上限数となります"
+       @cart.save
+       redirect_to products_path
+    else
+      @cart.save
+      flash[:notice] = "カートに入れました"
+      redirect_to products_path
     end
-    @cart.save
-    redirect_to user_path(current_user.id)
   end
 
   def update
     cart = Cart.find(params[:id])
-    cart.update(cart_params)
-    redirect_to user_carts_path(current_user.id)
+    if cart.update(cart_params)
+       flash[:notice] = "変更完了"
+       redirect_to user_carts_path(current_user.id)
+    else
+      @my_carts = current_user.carts
+      @order_append = OrderAppend.new
+      render :show
+    end
   end
 
   def destroy
     cart = Cart.find_by(id: params[:id])
-    cart.destroy
-    redirect_to user_carts_path(current_user.id)
+    if cart.destroy
+      flash[:notice] = "削除成功"
+      redirect_to user_carts_path(current_user.id)
+    else
+      @my_carts = current_user.carts
+      @order_append = OrderAppend.new
+      render :show
+    end
   end
 
   private

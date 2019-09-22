@@ -9,4 +9,10 @@ class HomeController < ApplicationController
   def master
   end
 
+  def top
+  end
+
+  def present
+  end
+
 end

@@ -7,7 +7,7 @@
         <h2 class="col-lg-3">商品一覧</h2>
         <span class="col-lg-2 text-right"><%=  fa_icon("search-plus 2x") %></span>
         <%= search_form_for @search,class: "col-lg-7" do |f| %>
-          <%= f.text_field :content_cont,class: "searchInput col-lg-9 rounded" %>
+          <%= f.text_field :content_cont,class: "searchInput col-lg-9 rounded searchSpace",required: true %>
           <%= f.submit "検索",class: "btn btn-pink pl-lg-3 pr-lg-3" %>
         <% end %>
       </div>

@@ -25,6 +25,7 @@ class Admins::CouponsController < ApplicationController
     coupon3.status = 2
     coupon3.user_id = user.sample
     coupon3.save
+    flash[:notice] = "発行完了"
 
     redirect_to new_admins_coupon_path
   end
