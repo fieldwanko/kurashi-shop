@@ -47,8 +47,9 @@ Rails.application.routes.draw do
 
   # get "/" => "products#index",as: "root"
   get "/sell_item" => "home#sell_item",as: "sell_item"
-  get "/" => "home#top"
+  get "/" => "home#top",as: "root"
   get "/success" => "home#success",as: "success"
   get "/master" => "home#master",as: "master"
+  get "/present" => "home#present",as: "present"
 
 end

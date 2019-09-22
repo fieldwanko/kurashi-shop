@@ -14,6 +14,16 @@ class User < ApplicationRecord
 
   attribute :secret_key, :string, default: SecureRandom.hex(10)
 
+  validates :user_name,length:{ in:2..10 },presence: true,uniqueness: true
+  validates :first_name,presence: true
+  validates :last_name,presence: true
+  validates :details_first_name,presence: true
+  validates :details_last_name,presence: true
+  validates :postal_code,length: { is:7 }
+  validates :address,length: { in: 10..20 }
+  validates :tel,length: {in: 10..15 }
+  validates :email,presence: true,uniqueness: true
+
 
 
 end

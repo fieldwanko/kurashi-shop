@@ -1,9 +1,9 @@
 <%= render "userHeader_fields" %>
 
-<div class="productShowWrapper clearfix mt-lg-5">
+<div class="productShowWrapper clearfix mt-lg-5 mb-lg-5">
   <%= render "sidebar_fields" %>
   <div class="productShowMain float-left pr-lg-3 pl-lg-3">
-    <div class="noteShowPhoto border-top border-bottom p-lg-2 mt-lg-3">
+    <div class="productShowPhoto border-top border-bottom p-lg-2 mt-lg-3">
       <% @product.product_images.each do |image| %>
         <%= attachment_image_tag image,:product_image,style:"width: 180px;height: 100%;" %>
       <% end %>
@@ -18,7 +18,7 @@
       <div>
         <h2 class="font-bold">商品情報</h2>
       </div>
-      <div class="noteShowContent border p-lg-2" style="width: 100%; height: 300px;">
+      <div class="productShowContent border p-lg-2" style="width: 100%; height: 300px;">
         <%= @product.content %>
       </div>
       <div class="row">
@@ -34,11 +34,11 @@
             <%= form_for [@product,@cart],url: product_carts_path(@product.id) do |f| %>
               <p class="text-right">個数:
               <span style="padding-left: 30px;"><%= f.select :quantity, @limit %></span></p>
-              <%= f.submit "商品をカートに入れる",class: "btn btn-pink rounded offset-lg-7 mt-lg-5 text-white col-lg-5 pt-lg-3 pb-lg-3" %>
+              <%= f.submit "商品をカートに入れる",class: "btn btn-pink rounded offset-lg-7 mt-lg-5 text-white col-lg-5 pt-lg-3 pb-lg-3","data-confirm" => "本当にカートに入れますか？" %>
             <% end %>
           </div>
             <%= form_for [@product,@request],url: product_user_requests_path(@product.id) do |f| %>
-              <%= f.submit "商品を欲しいものに追加する",class: "btn btn-sky rounded p-lg-3 col-lg-5 offset-lg-7 mt-lg-3" %>
+              <%= f.submit "商品を欲しいものに追加する",class: "btn btn-sky rounded p-lg-3 col-lg-5 offset-lg-7 mt-lg-3","data-confirm" => "本当に欲しいものに追加しますか？尚、追加された商品はマイページの欲しいものリストから確認できます" %>
             <% end %>
         <% else %>
             <p class="border pt-lg-3 pb-lg-3 bg-black text-white offset-lg-3 col-lg-6 text-center">入荷待ちです</p>

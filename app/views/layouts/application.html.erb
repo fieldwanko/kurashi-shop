@@ -10,6 +10,11 @@
   </head>
 
   <body>
+    <% if flash[:notice] %>
+      <div class="teachBox rounded row p-lg-2 flash off">
+        <p class="offset-lg-1 col-lg-10 text-center text-pink pt-lg-2"><%= flash[:notice] %></p>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

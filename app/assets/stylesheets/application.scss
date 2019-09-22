@@ -92,6 +92,10 @@
   font-weight: bold;
 }
 
+.miniTd {
+  width: 180px;
+}
+
 .flex {
   display: flex;
 }
@@ -124,6 +128,22 @@
   border: 3px solid #cccccc;
 }
 
+.teachBox {
+  height: 100px;
+  width: 25%;
+  background-color: #fcfcfc;
+  border: 3px solid pink;
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  z-index: 2;
+  position: fixed;
+}
+
+.deleteTeach {
+  font-size: 30px;
+}
+
 /*----共通-----*/
 
 /*-----header-----*/
@@ -133,6 +153,26 @@
   display: block;
 }
 
+.headerSuport:hover {
+  .headerText{
+    color: pink;
+  }
+  .fa {
+    color:pink;
+  }
+}
+
+.headerHover i{
+  color: red;
+}
+
+.headerHover {
+  color: red;
+}
+
+.text-red {
+  color: red;
+}
 
 
 /*-----sell_user/Top(sell_item)-----*/
@@ -251,6 +291,7 @@
 
 .mypageCoupon {
   cursor: default;
+  text-align: center;
 }
 
 /*----product/show----*/
@@ -352,7 +393,7 @@
 }
 
 
-/*----user/order_detail/show----*/
+/*----user/order_detail/index----*/
 
 .userDetailBox {
   width: 30%;
@@ -370,6 +411,18 @@
 
 .arrowSpace i {
   line-height: 300px;
+}
+
+.appendPresentMark i{
+  color: red;
+}
+
+.appendReceiveMark i{
+  color: pink;
+}
+
+.off {
+  display: none;
 }
 
 
@@ -488,6 +541,167 @@
   top: 30%;
   left: 15%;
 }
+
+/*------top-----*/
+
+.topIndexMain {
+  width: 100%;
+  height: 450px;
+  background-color: #eeeeee;
+}
+
+.topIndexLeft {
+  width: 42%;
+  height: 100%;
+  & > p {
+    line-height: 33px;
+  }
+}
+
+.subTitleMode {
+  color: lightskyblue;
+  font-size: 30px;
+}
+
+.topIndexRight {
+  width: 58%;
+  height: 100%;
+  position: relative;
+}
+
+.topIndexMainPhoto {
+  z-index: 105;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+}
+
+.topIndexSelect {
+  height: 400px;
+}
+
+.selectBox {
+  width: 32%;
+}
+
+.selectBox:nth-child(1),
+.selectBox:nth-child(2){
+  margin-right: 2%;
+}
+
+.topIndexBest {
+  height: 300px;
+}
+
+.topProduction {
+  height: 260px;
+  float: left;
+}
+
+.topIndexCoupon {
+  height: 500px;
+  width: 100%;
+}
+
+.topCouponLeft {
+  width: 55%;
+  height: 500px;
+}
+
+.topCouponRight {
+  height: 500px;
+  width: 45%;
+}
+
+.topCouponImage {
+  background-image: url(/pointUp.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  width: 80%;
+}
+
+.topGiftImage {
+  background-image: url(/gift.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  width: 80%;
+}
+
+.topCouponComment {
+  font-size: 24px;
+  line-height: 48px;
+}
+
+.topIndexKoko {
+  height: 550px;
+  width: 100%;
+}
+
+.topKokoLeft {
+  width: 38%;
+  height: 550px;
+}
+
+.topKokoRight {
+  width: 62%;
+  height: 550px;
+}
+
+.fieldkokoTitle {
+  width: 100%;
+}
+
+.startFieldkoko {
+  font-family: sans-serif;
+  font-size: 60px;
+}
+
+.fieldkokoComment {
+  width: 80%;
+  margin-left: 10%;
+  font-size: 20px;
+  line-height: 40px;
+}
+
+.imgSize {
+  object-fit: cover;
+  height: 60%;
+  width: 100%;
+}
+
+.imgSizeField {
+  width: 85%;
+  height: 65%;
+  margin-top: 25%;
+}
+
+.topKokoDairect {
+  height: 200px;
+}
+
+.magazineTitle {
+  font-size: 30px;
+}
+
+.topNewsUl{
+  height: 400px;
+}
+
+.topUl li {
+  height: 100px;
+}
+
+.topIndexForm {
+  height: 400px;
+  background-color: #333333;
+}
+
+.topFormList {
+  height: 300px;
+}
+
 
 
 

@@ -5,35 +5,35 @@
       <div class="sellUserSign col-lg-6 offset-lg-3 border p-lg-4">
         <div class="field">
           <%= f.label :販売店名 %><br />
-          <%= f.text_field :shop_name, autofocus: true,class: "col-lg-10 offset-lg-1 rounded" %>
+          <%= f.text_field :shop_name, autofocus: true,class: "col-lg-10 offset-lg-1 rounded",required: true %>
         </div>
         <div class="field mt-lg-3">
           <%= f.label :所在地 %><br />
-          <%= f.text_field :address,class: "col-lg-10 offset-lg-1 rounded" %>
+          <%= f.text_field :address,class: "col-lg-10 offset-lg-1 rounded",required: true %>
         </div>
         <div class="field mt-lg-3">
           <%= f.label :郵便番号 %><br />
-          <%= f.text_field :postal_code,class: "col-lg-10 offset-lg-1 rounded" %>
+          <%= f.text_field :postal_code,class: "col-lg-10 offset-lg-1 rounded",required: true %>
         </div>
         <div class="field mt-lg-3">
           <%= f.label :電話番号 %><br />
-          <%= f.text_field :tel,class: "col-lg-10 offset-lg-1 rounded" %>
+          <%= f.text_field :tel,class: "col-lg-10 offset-lg-1 rounded",required: true %>
         </div>
         <div class="field mt-lg-3">
           <%= f.label :Email %><br />
-          <%= f.email_field :email, autocomplete: "email",class: "col-lg-10 offset-lg-1 rounded" %>
+          <%= f.email_field :email, autocomplete: "email",class: "col-lg-10 offset-lg-1 rounded",required: true %>
         </div>
         <div class="field mt-lg-3">
           <%= f.label :パスワード %>
           <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> characters minimum)</em>
           <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password",class: "col-lg-10 offset-lg-1 rounded" %>
+          <%= f.password_field :password, autocomplete: "new-password",class: "col-lg-10 offset-lg-1 rounded",required: true %>
         </div>
 
         <div class="field mt-lg-3">
           <%= f.label :パスワード確認 %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "col-lg-10 offset-lg-1 rounded" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",class: "col-lg-10 offset-lg-1 rounded",required: true %>
         </div>
 
         <div class="actions">

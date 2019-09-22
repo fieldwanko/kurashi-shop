@@ -1,33 +1,55 @@
 <header class="border-bottom">
   <div class="row pt-lg-4">
-    <!-- <div class="searchMode col-lg-2 pl-lg-5">
-      <p><i class="fas fa-search-plus fa-2x"></i> </p>
-    </div> -->
     <div class="headerTitle col-lg-3 text-center">
-      <h1 class="text-dark">Kurashi Shop</h1>
+      <%= link_to root_path do %>
+        <h1 class="text-dark">Kurashi Shop</h1>
+      <% end %>
     </div>
       <% if user_signed_in? %>
-        <div class="sellNote col-lg-1 text-center">
-          <%= link_to "商品一覧",products_path,class: "headerLine link-style" %>
-        </div>
-        <div class="sellNote col-lg-1 text-center">
-          <%= link_to "マイページ",user_path(current_user.id),class: "headerLine link-style" %>
+        <div class="headerSuport col-lg-1 text-center">
+          <%= link_to products_path,class: "headerLine link-style" do %>
+            <span class="headerText"><%= fa_icon("clipboard 2x") %><br>商品一覧</span>
+          <% end %>
         </div>
         <div class="headerSuport col-lg-1 text-center">
-          <%= link_to "カート",user_carts_path(current_user.id),class: "headerLine link-style" %>
+          <%= link_to user_path(current_user.id),class: "headerLine link-style" do %>
+            <span class="headerText"><%= fa_icon("user 2x") %><br>マイページ</span>
+          <% end %>
         </div>
         <div class="headerSuport col-lg-1 text-center">
-          <p class="headerLine">プレゼント</p>
+          <%= link_to user_carts_path(current_user.id),class: "headerLine link-style" do %>
+          <% if current_user.carts.count > 0 %>
+            <span class="headerText headerHover"><%= fa_icon("shopping-cart 2x") %><br><%= current_user.carts.count %>商品</span>
+          <% else %>
+            <span class="headerText"><%= fa_icon("shopping-cart 2x") %><br>カート</span>
+          <% end %>
+          <% end %>
         </div>
         <div class="headerSuport col-lg-1 text-center">
-          <%= link_to "ログアウト",destroy_user_session_path,class: "headerLine link-style",method: :delete %>
+          <%= link_to present_path,class: "headerLine link-style" do %>
+            <span class="headerText"><%= fa_icon("gift 2x") %><br>プレゼント</span>
+          <% end %>
+        </div>
+        <div class="headerSuport col-lg-1 text-center">
+          <%= link_to destroy_user_session_path,class: "headerLine link-style","data-confirm" => "本当にログアウトしますか？", method: :delete do %>
+            <span class="headerText"><%= fa_icon("sign-out 2x") %><br>ログアウト</span>
+          <% end %>
         </div>
       <% else %>
         <div class="headerSuport col-lg-2 text-center">
-            <%= link_to "新規登録",new_user_registration_path,class: "headerLine link-style" %>
+          <%= link_to new_user_registration_path,class: "headerLine link-style" do %>
+            <span class="headerText"><%= fa_icon("user 2x") %><br>新規登録</span>
+          <% end %>
           </div>
           <div class="headerSuport col-lg-2 text-center">
-            <%= link_to "ログイン",new_user_session_path,class: "headerLine link-style" %>
+            <%= link_to new_user_session_path,class: "headerLine link-style" do %>
+              <span class="headerText"><%= fa_icon("sign-in 2x") %><br>ログイン</span>
+            <% end %>
+          </div>
+          <div class="headerSuport col-lg-2 text-center">
+            <%= link_to sell_item_path,class: "headerLine link-style" do %>
+              <span class="headerText"><%= fa_icon("users 2x") %><br>販売店の方</span>
+            <% end %>
           </div>
       <% end %>
   </div>

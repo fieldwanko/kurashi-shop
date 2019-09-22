@@ -6,7 +6,7 @@
     </div>
     <div class="orderShowMain pr-lg-3 pl-lg-3">
       <%= form_for @product,url: sell_users_product_path(@product.id),method: :put do |f| %>
-        <div class="noteShowPhoto border-top border-bottom p-lg-2 mt-lg-3" id="moreProductImage">
+        <div class="productShowPhoto border-top border-bottom p-lg-2 mt-lg-3" id="moreProductImage">
           <% @product.product_images.each do |image| %>
             <%= attachment_image_tag image,:product_image,style:"width: 180px;height: 100%;" %>
           <% end %>
@@ -33,7 +33,7 @@
           <div>
             <h2 class="font-bold">商品情報</h2>
           </div>
-          <div class="noteShowContent">
+          <div class="productShowContent">
             <%= f.text_area :content,class: "sellEditProductTextarea" %>
          </div>
           <div class="row">
