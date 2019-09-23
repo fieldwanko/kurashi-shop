@@ -8,6 +8,7 @@
         <%= image_tag "",id: "upPreview",class: "previewImgStyle" %>
       </div>
       <%= form_for @product,url: sell_users_products_path do |f| %>
+      <%= render 'layouts/error_messages', model: f.object %>
       <div class="row clearfix mt-lg-5">
         <div class="col-lg-6 float-left">
           <div class="productsAddImage mt-lg-4">

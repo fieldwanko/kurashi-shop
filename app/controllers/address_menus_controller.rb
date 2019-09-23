@@ -7,16 +7,15 @@ class AddressMenusController < ApplicationController
   end
 
   def create
-    user = User.find(current_user.id)
-    address = AddressMenu.new(address_params)
-    address.user_id = current_user.id
-    if address.save
+    @user = User.find(current_user.id)
+    @address = AddressMenu.new(address_params)
+    @address.user_id = current_user.id
+    if @address.save
       flash[:notice] = "作成成功"
       redirect_to new_user_address_menus_path(current_user.id)
     else
       @user = User.find(current_user.id)
       @addresses = @user.address_menus
-      @address = AddressMenu.new
       render 'new'
     end
   end
