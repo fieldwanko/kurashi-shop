@@ -12,7 +12,7 @@ class Product < ApplicationRecord
   has_many :users,through: :user_requests
 
   validates :title,presence: true
-  validates :content,presence: true,length: { in:20..300 }
+  validates :content,presence: true,length: { maximum:300 }
   validates :price,presence: true, numericality: { greater_than_or_equal_to: 100 }
 
 

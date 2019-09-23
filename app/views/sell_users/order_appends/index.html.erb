@@ -36,24 +36,25 @@
         </tr>
       </thead>
       <tbody>
-        <% @result.each do |order| %>
-        <% @append = order.order_append %>
-            <tr class="table-text orderCheck" id="order_<%= order.id %>">
+        <% @details.each do |order| %>
+        <% @detail = order[0] %>
+          <% @append = @detail.order_append %>
+            <tr class="table-text orderCheck"<%#= order.id %>>
               <td><%= @append.id %></td>
               <td><%= @append.user.first_name %><%= @append.user.last_name %></td>
-              <td class="text-limit"><%= order.product.title %></td>
-              <td><%= order.quantity %></td>
+              <td class="text-limit"><%= @detail.product.title %></td>
+              <td><%= @detail.quantity %></td>
               <td><%= @append.total %></td>
               <%= form_for @append,url:sell_users_order_append_path(@append.id),method: :put do |f| %>
               <td>
                 <% if @append.status == "配送準備中" %>
-                  <span><%= f.select :status, options_for_select(OrderAppend.statuses.keys),{},{class: "btn btn-sky selectCss"} %></span></p>
+                  <span><%= f.select :status, options_for_select(OrderAppend.statuses.keys),{},{class: "btn btn-sky selectCss"} %>配送準備中</span></p>
                 <% elsif @append.status == "配送中" %>
-                  <span><%= f.select :status, options_for_select(OrderAppend.statuses.keys),{},{class: "btn btn-pink selectCss"} %></span></p>
+                  <span><%= f.select :status, options_for_select(OrderAppend.statuses.keys),{},{class: "btn btn-pink selectCss"} %>配送中</span></p>
                 <% elsif @append.status == "配送済み" %>
-                  <span><%= f.select :status, options_for_select(OrderAppend.statuses.keys),{},{class: "btn btn-gray selectCss"} %></span>
-                <% elsif @appned.status == "問題が発生" %>
-                  <span><%= f.select :status, options_for_select(OrderAppend.statuses.keys),{},{class: "btn btn-dangar selectCss"} %></span>
+                  <span><%= f.select :status, options_for_select(OrderAppend.statuses.keys),{},{class: "btn btn-gray selectCss"} %>配送済み</span>
+                <% else %>
+                  <span><%= f.select :status, options_for_select(OrderAppend.statuses.keys),{},{class: "btn btn-dangar selectCss"} %>問題が発生</span>
                 <% end %>
               </td>
               <td>
@@ -61,7 +62,7 @@
               </td>
               <% end %>
             </tr>
-            <div class="detailModalWrapper" id="modal_order_<%= order.id %>">
+            <div class="detailModalWrapper">
               <div class="detailForm">
                 <div class="close-modal">
                   <%= fa_icon("times 2x") %>
