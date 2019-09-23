@@ -17,11 +17,18 @@
               <h4 class="border-bottom pb-lg-3 font-bold text-center">購入情報</h4>
               <p class="border-bottom pb-lg-2">支払い方法:<%= append.pay %></p>
               <% append.order_details.each do |detail| %>
+                <p>商品注文ID:<%= detail.id %></p>
                 <p class="text-limit">商品名:「<%= detail.product.title %>」</p>
                 <p>単価:<%= detail.product.price %>円</p>
                 <p>数量:<%= detail.quantity %>個</p>
                 <p>お買い上げ:<%= detail.price * detail.quantity %>円</p>
                 <p class="border-bottom pb-lg-3">購入日:<%= detail.created_at.strftime('%Y/%m/%d') %></p>
+              <% end %>
+              <% if append.first_coupon.nil? %>
+                <p>合計金額: <%= append.total %></p>
+              <% else %>
+                <p>クーポンを使いました</p>
+                <p>合計金額: <%= append.total %></p>
               <% end %>
             </div>
             <span class="arrowSpace float-left mt-lg-5"><%= fa_icon("arrow-right 5x") %></span>
@@ -60,7 +67,13 @@
                 <p>単価:<%= detail.product.price %>円</p>
                 <p>数量:<%= detail.quantity %>個</p>
                 <p>お買い上げ:<%= detail.price * detail.quantity %>円</p>
-                <p>購入日:<%= detail.created_at.strftime('%Y/%m/%d') %></p>
+                <p class="border-bottom pb-lg-3">購入日:<%= detail.created_at.strftime('%Y/%m/%d') %></p>
+                <% if give.first_coupon.nil? %>
+                  <p>合計金額: <%= give.total %></p>
+                <% else %>
+                  <p>クーポンを使いました</p>
+                  <p>合計金額: <%= give.total %></p>
+                <% end %>
               <% end %>
             </div>
             <span class="arrowSpace float-left mt-lg-5"><%= fa_icon("arrow-right 5x") %></span>

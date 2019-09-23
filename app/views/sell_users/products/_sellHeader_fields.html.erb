@@ -3,20 +3,25 @@
     <div class="headerTitle col-lg-3 text-center">
       <h1 class="text-dark">Kurashi Shop</h1>
     </div>
-    <div class="col-lg-1 text-center font-minimum">
-      <%= link_to "商品一覧",sell_users_products_path,class: "headerLine font-minimum" %>
-    </div>
-    <div class="col-lg-2 text-center">
-      <%= link_to "新しく商品を販売する",new_sell_users_product_path,class: "headerLine font-minimum" %>
-    </div>
     <div class="headerSuport col-lg-1 text-center font-minimum">
-      <%= link_to "購入者情報",sell_users_order_appends_path,class: "headerLine font-minimum" %>
-    </div>
-    <div class="headerSuport col-lg-1 text-center font-minimum">
-      <p>在庫追加</p>
+      <%= link_to sell_users_products_path,class: "headerLine font-minimum link-style" do %>
+        <span class="headerText"><%= fa_icon("clipboard 2x") %><br>商品一覧</span>
+      <% end %>
     </div>
     <div class="headerSuport col-lg-1 text-center">
-      <%= link_to "ログアウト",destroy_sell_user_session_path,class: "text-main link-def font-minimum",method: :delete %>
+      <%= link_to new_sell_users_product_path,class: "headerLine font-minimum link-style" do %>
+        <span class="headerText"><%= fa_icon("gift 2x") %><br>販売</span>
+      <% end %>
+    </div>
+    <div class="headerSuport col-lg-1 text-center font-minimum">
+      <%= link_to sell_users_order_appends_path,class: "headerLine font-minimum link-style" do %>
+        <span class="headerText"><%= fa_icon("user 2x") %><br>購入者情報</span>
+      <% end %>
+    </div>
+    <div class="headerSuport col-lg-1 text-center">
+      <%= link_to destroy_sell_user_session_path,class: "headerLine link-style font-minimum",method: :delete do %>
+        <span class="headerText"><%= fa_icon("sign-out 2x") %><br>ログアウト</span>
+      <% end %>
     </div>
   </div>
 </header>

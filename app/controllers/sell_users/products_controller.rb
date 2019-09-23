@@ -17,15 +17,15 @@ class SellUsers::ProductsController < ApplicationController
   end
 
   def create
-    product = Product.new(product_params)
-    product.sell_user_id = current_sell_user.id
-    if product.save
+    @product = Product.new(product_params)
+    @product.sell_user_id = current_sell_user.id
+    if @product.save
       flash[:notice] = "商品を追加しました"
       redirect_to sell_users_products_path
     else
-      @product = Product.new
-      @product.product_images.build
-      @product.build_product_arrival
+      # @product = Product.new
+      # @product.product_images.build
+      # @product.build_product_arrival
       render :new
     end
   end
@@ -40,8 +40,7 @@ class SellUsers::ProductsController < ApplicationController
       flash[:notice] = "更新完了"
       redirect_to sell_users_products_path
     else
-      @product = Product.find(params[:id])
-      render :edit
+      render 'new'
     end
   end
 
