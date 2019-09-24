@@ -23,11 +23,6 @@
             <p class="pl-lg-4"><%= address.address %></p>
           </div>
         <% end %>
-        <% if @address_menus.count <= 1 %>
-          <div class="orderAddressBox pl-lg-2 pr-lg-2 border rounded pt-lg-3 pb-lg-3 float-left">
-            <span class="pb-lg-5 mt-lg-5"><%= link_to "新しく住所を登録する",new_user_address_menus_path(current_user.id),class:"btn btn-sky mt-lg-5 mb-lg-5" %></span>
-          </div>
-        <% end %>
       </div>
       <span class="spanPink offset-lg-5 mb-lg-5 text-pink"><%= fa_icon("arrow-down 5x") %></span>
       <div class="orderAppendPay mb-lg-5 mt-lg-5">
