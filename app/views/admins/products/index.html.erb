@@ -28,7 +28,6 @@
           <tr>
             <th>ID</th>
             <th>商品名</th>
-            <th>商品詳細</th>
             <th>金額</th>
             <th>販売状況</th>
             <th>販売店</th>
@@ -38,10 +37,15 @@
           <% @result.each do |product| %>
             <tr class="table-text orderCheck">
               <td><%= product.id %></td>
-              <td><%= product.title %></td>
-              <td class="text-limit"><%= product.content %></td>
+              <td class="text-limit"><%= product.title %></td>
               <td><%= product.price %></td>
-              <td><%= product.status %></td>
+              <td>
+                <% if product.status == 1 %>
+                  販売中
+                <% else %>
+                  販売停止中
+                <% end %>
+              </td>
               <td><%= product.sell_user.shop_name %></td>
             </tr>
           <% end %>

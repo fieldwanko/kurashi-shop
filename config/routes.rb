@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   namespace :sell_users do
     resources :products, only:[:new,:create,:update,:edit,:index,:show,:destroy]
     resources :order_appends,only:[:index,:update]
+    resources :present_appends, only:[:index,:update]
   end
 
   resources :user_requests,only:[:destroy]

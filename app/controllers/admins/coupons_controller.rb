@@ -9,8 +9,14 @@ class Admins::CouponsController < ApplicationController
 
   def create
     details = OrderDetail.all
-    order = details.map(&:order_append)
-    user = order.pluck(:user_id).uniq
+    appends = []
+    details.each do |detail|
+      if appends.push(detail.order_append).present?
+        appends.push(detail.order_append)
+      end
+    end
+    appends.compact!
+    user = appends.pluck(:user_id).uniq
     coupon1 = Coupon.new
     coupon1.status = 0
     coupon1.user_id = user.sample
