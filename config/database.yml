@@ -22,6 +22,10 @@ test:
 
 production:
   <<: *default
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
+  database: kurashi
+  adapter: mysql2
+  encoding: utf8mb4
+  collation: utf8mb4_general_ci
+  host: kurahi-mysql-server.co2x3v8p5kjk.ap-northeast-1.rds.amazonaws.com
+  username: root
+  password: rootroot
