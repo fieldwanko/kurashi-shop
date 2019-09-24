@@ -21,17 +21,17 @@
       <tbody>
         <% @details.each do |order| %>
         <% @detail = order[0] %>
-          <% @append = @detail.order_append %>
-            <tr class="table-text orderCheck " id ="<%= order.ids[0] %>">
-              <td><%= order.ids[0] %></td>
+          <% @append = @detail.present_append %>
+            <tr class="table-text orderCheck" id ="<%= order.ids[0] %>">
+              <td><%= @append.id %></td>
               <td><%= @append.user.first_name %><%= @append.user.last_name %></td>
               <td class="text-limit"><%= @detail.product.title %></td>
               <td><%= @detail.quantity %></td>
               <td><%= @append.total %></td>
-              <%= form_for @append,url:sell_users_order_append_path(@append.id),method: :put do |f| %>
+              <%= form_for @append,url:sell_users_present_append_path(@append.id),method: :put do |f| %>
               <td><%= @append.status %></td>
               <td>
-                <span><%= f.select :status, options_for_select(OrderAppend.statuses.keys),{},{class: "btn selectCss"} %></span></p>
+                <span><%= f.select :status, options_for_select(PresentAppend.statuses.keys),{},{class: "btn"} %></span></p>
               </td>
               <td>
                 <%= f.submit "変更確定",class: "btn btn-sky" %>
