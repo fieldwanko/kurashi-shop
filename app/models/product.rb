@@ -13,7 +13,7 @@ class Product < ApplicationRecord
 
   validates :title,presence: true
   validates :content,presence: true,length: { maximum:300 }
-  validates :price,presence: true, numericality: { greater_than_or_equal_to: 100 }
+  validates :price,presence: true, numericality: { greater_than_or_equal_to: 0 }
 
 
 

@@ -1,13 +1,11 @@
 class SellUsers::ProductsController < ApplicationController
+  before_action :ensure_correct_sell_user,only:[:edit]
+
   def index
     @my_products = Product.where(sell_user_id: current_sell_user.id)
     @products = @my_products.order(created_at: :desc).page(params[:page]).per(20)
     @search = @products.ransack(params[:q])
     @result = @search.result
-  end
-
-  def show
-    @product = Product.find(params[:id])
   end
 
   def new
@@ -35,16 +33,24 @@ class SellUsers::ProductsController < ApplicationController
   end
 
   def update
-    product = Product.find(params[:id])
-    if product.update(product_params)
+    @product = Product.find(params[:id])
+    if @product.update(product_params)
       flash[:notice] = "更新完了"
       redirect_to sell_users_products_path
     else
-      render 'new'
+      redirect_to edit_sell_users_product_path(@product.id)
     end
   end
 
   def destroy
+  end
+
+  def ensure_correct_sell_user
+    @product = Product.find(params[:id])
+    if @product.sell_user_id != current_sell_user.id
+      flash[:notice] = "指定されたページは見つかりません"
+      redirect_to sell_users_products_path
+    end
   end
 
   private

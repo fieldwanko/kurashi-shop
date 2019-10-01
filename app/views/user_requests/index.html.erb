@@ -13,37 +13,43 @@
           <tr>
             <th>商品イメージ</th>
             <th>商品</th>
-            <th>数量</th>
-            <th>合計金額</th>
-            <% if @user.id != current_user.id %>
-              <th>プレゼント</th>
+            <th>金額</th>
+            <th>商品詳細</th>
+            <% if user_signed_in? %>
+              <% if @user.id == current_user.id %>
+                <th>削除</th>
+              <% else %>
+                <th>プレゼント</th>
+              <% end %>
             <% else %>
-              <th>削除</th>
             <% end %>
           </tr>
         </thead>
         <tbody>
           <% @requests.each do |request| %>
           <% @product = request.product %>
-            <tr class="table-text requestCheck">
-              <td class="miniTd"><%= attachment_image_tag @product.product_images.first,:product_image,style:"width: 100%;height: 10%;" %></td>
-              <td class="text-limit"><%= @product.title %></td>
-              <td><%= request.quantity %></td>
-              <td><%= @product.price * request.quantity %></td>
-              <% if @user.id != current_user.id %>
-                <% total = (@product.price) * (request.quantity) %>
-                <td>
-                  <%= form_for @present_append,url: present_appends_path do |f| %>
-                  <%= f.hidden_field :total,value: total %>
-                  <%= f.hidden_field :user_id,value: @user.id %>
-                  <%= f.hidden_field :product_num,value: @product.id %>
-                  <%= f.submit "プレゼントする",class: "btn btn-pink col-lg-8 offset-lg-3 mt-lg-5","data-confirm" => "本当にプレゼントしますか？" %>
+              <tr class="table-text requestCheck">
+                <td class="miniTd"><%= attachment_image_tag @product.product_images.first,:product_image,style:"width: 100%;height: 10%;" %></td>
+                <td class="text-limit"><%= @product.title %></td>
+                <td><%= @product.price * request.quantity %></td>
+                <td><%= link_to "商品詳細", product_path(@product.id),class: "btn btn-sky" %></td>
+                <% if user_signed_in? %>
+                  <% if @user.id == current_user.id %>
+                    <% total = (@product.price) * (request.quantity) %>
+                    <td><%= link_to "削除",user_request_path(request.id),class: "btn btn-danger",method: :delete,"data-confirm" => "本当に削除しますか？" %></td>
+                  <% else %>
+                    <td>
+                      <%= form_for @present_append,url: present_appends_path do |f| %>
+                        <%= f.hidden_field :total,value: total %>
+                        <%= f.hidden_field :user_id,value: @user.id %>
+                        <%= f.hidden_field :product_num,value: @product.id %>
+                        <%= f.submit "プレゼントする",class: "btn btn-pink col-lg-8 offset-lg-3","data-confirm" => "本当にプレゼントしますか？" %>
+                      <% end %>
+                    </td>
+                  <% end %>
                 <% end %>
-                </td>
-              <% else %>
-                <td><%= link_to "削除",user_request_path(request.id),class: "btn btn-dangar",method: :delete,"data-confirm" => "本当に削除しますか？" %></td>
-              <% end %>
-            </tr>
+  <!-- http://localhost:3000/users/2/c7979059cae6e9f5a6ca/user_requests -->
+              </tr>
           <% end %>
         </tbody>
       </table>
