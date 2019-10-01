@@ -65,6 +65,7 @@ class OrderAppendsController < ApplicationController
 
     if order_append.save
       flash[:notice] = "購入完了"
+      NotificationMailer.send_confirm_to_user(current_user).deliver
       redirect_to success_path
     else
       @order_append = OrderAppend.find(params[:id])
