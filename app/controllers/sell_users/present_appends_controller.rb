@@ -9,16 +9,4 @@ class SellUsers::PresentAppendsController < ApplicationController
     end
   end
 
-  def update
-    append = PresentAppend.find(params[:id])
-    append.update(present_params)
-    flash[:notice] = "更新完了"
-    redirect_to sell_users_present_appends_path
-  end
-
-  private
-    def present_params
-     params.require(:present_append).permit(:status)
-    end
-
 end
