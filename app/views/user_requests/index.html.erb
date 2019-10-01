@@ -31,7 +31,7 @@
               <tr class="table-text requestCheck">
                 <td class="miniTd"><%= attachment_image_tag @product.product_images.first,:product_image,style:"width: 100%;height: 10%;" %></td>
                 <td class="text-limit"><%= @product.title %></td>
-                <td><%= @product.price * request.quantity %></td>
+                <td><%= @product.price %></td>
                 <td><%= link_to "商品詳細", product_path(@product.id),class: "btn btn-sky" %></td>
                 <% if user_signed_in? %>
                   <% if @user.id == current_user.id %>
@@ -40,7 +40,7 @@
                   <% else %>
                     <td>
                       <%= form_for @present_append,url: present_appends_path do |f| %>
-                        <%= f.hidden_field :total,value: total %>
+                        <%= f.hidden_field :total,value: @product.price %>
                         <%= f.hidden_field :user_id,value: @user.id %>
                         <%= f.hidden_field :product_num,value: @product.id %>
                         <%= f.submit "プレゼントする",class: "btn btn-pink col-lg-8 offset-lg-3","data-confirm" => "本当にプレゼントしますか？" %>

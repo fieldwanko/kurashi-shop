@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_20_110143) do
+ActiveRecord::Schema.define(version: 2019_10_01_033354) do
 
   create_table "address_menus", force: :cascade do |t|
     t.string "name"
@@ -56,7 +56,6 @@ ActiveRecord::Schema.define(version: 2019_09_20_110143) do
     t.text "address"
     t.integer "total"
     t.integer "pay"
-    t.integer "status"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -72,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_09_20_110143) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "present_append_id"
+    t.integer "status"
   end
 
   create_table "present_appends", force: :cascade do |t|
@@ -81,7 +81,6 @@ ActiveRecord::Schema.define(version: 2019_09_20_110143) do
     t.text "address"
     t.integer "total"
     t.integer "pay"
-    t.integer "status"
     t.integer "user_id"
     t.integer "give_user_id"
     t.integer "first_coupon"
@@ -137,6 +136,7 @@ ActiveRecord::Schema.define(version: 2019_09_20_110143) do
   end
 
   create_table "user_requests", force: :cascade do |t|
+    t.string "secret_key"
     t.integer "quantity", default: 0
     t.integer "user_id"
     t.integer "product_id"

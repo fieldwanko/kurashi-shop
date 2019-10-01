@@ -22,13 +22,17 @@
                 <p>単価:<%= detail.product.price %>円</p>
                 <p>数量:<%= detail.quantity %>個</p>
                 <p>お買い上げ:<%= detail.price * detail.quantity %>円</p>
-                <p class="border-bottom pb-lg-3">購入日:<%= detail.created_at.strftime('%Y/%m/%d') %></p>
-              <% end %>
-              <% if append.first_coupon.nil? %>
-                <p>合計金額: <%= append.total %></p>
-              <% else %>
-                <p>クーポンを使いました</p>
-                <p>合計金額: <%= append.total %></p>
+                <p class="pb-lg-3">購入日:<%= detail.created_at.strftime('%Y/%m/%d') %></p>
+                <p class="text-right pb-lg-5 border-bottom">配送状況:
+                  <% if detail.status == "配送準備中" %>
+                    <span class="btn-sky p-lg-4 ml-lg-4 rounded"><%= detail.status %></span></p>
+                  <% elsif detail.status == "配送中" %>
+                    <span class="btn-pink p-lg-4 ml-lg-4 rounded"><%= detail.status %></span></p>
+                  <% elsif detail.status == "配送済み" %>
+                    <span class="btn-gray p-lg-4 ml-lg-4 rounded"><%= detail.status %></span></p>
+                  <% elsif detail.status == "問題が発生" %>
+                    <span class="btn-danger p-lg-4 ml-lg-4 rounded"><%= detail.status %></span></p>
+                <% end %>
               <% end %>
             </div>
             <span class="arrowSpace float-left mt-lg-5"><%= fa_icon("arrow-right 5x") %></span>
@@ -38,16 +42,12 @@
               <p class="font-minimum">かな表記[<%= append.details_name %>]</p>
               <p>〒<%= append.postal_code %></p>
               <p class="text-turn">届け先:<%= append.address %></p>
-              <p class="text-right">配送状況:
-                <% if append.status == "配送準備中" %>
-                  <span class="btn-sky p-lg-4 ml-lg-4 rounded"><%= append.status %></span></p>
-                <% elsif append.status == "配送中" %>
-                  <span class="btn-pink p-lg-4 ml-lg-4 rounded"><%= append.status %></span></p>
-                <% elsif appned.status == "配送済み" %>
-                  <span class="btn-gray p-lg-4 ml-lg-4 rounded"><%= append.status %></span>
-                <% elsif appned.status == "配送済み" %>
-                  <span class="btn-dangar p-lg-4 ml-lg-4 rounded"><%= append.status %></span>
-                <% end %>
+              <% if append.first_coupon.nil? %>
+                <p class="font-bold">合計金額: <%= append.total %></p>
+              <% else %>
+                <p>クーポンを使いました</p>
+                <p class="font-bold">合計金額: <%= append.total %></p>
+              <% end %>
             </div>
           </div>
         <% end %>
@@ -74,6 +74,18 @@
                   <p>クーポンを使いました</p>
                   <p>合計金額: <%= give.total %></p>
                 <% end %>
+
+                <p class="text-right">配送状況:
+                <% if detail.status == "配送準備中" %>
+                  <span class="btn-sky p-lg-4 ml-lg-4 rounded"><%= detail.status %></span></p>
+                <% elsif detail.status == "配送中" %>
+                  <span class="btn-pink p-lg-4 ml-lg-4 rounded"><%= detail.status %></span></p>
+                <% elsif detail.status == "配送済み" %>
+                  <span class="btn-gray p-lg-4 ml-lg-4 rounded"><%= detail.status %></span></p>
+                <% elsif detail.status == "問題が発生" %>
+                  <span class="btn-danger p-lg-4 ml-lg-4 rounded"><%= detail.status %></span></p>
+                <% end %>
+
               <% end %>
             </div>
             <span class="arrowSpace float-left mt-lg-5"><%= fa_icon("arrow-right 5x") %></span>
@@ -81,16 +93,6 @@
               <span class="appendPresentMark"><%= fa_icon("gift 2x") %></span>
               <h4 class="border-bottom pb-lg-3 font-bold text-center">宛先情報</h4>
               <h5 class="font-bold"><%= give.user.user_name %>様へのプレゼント</h5>
-              <p class="text-right">配送状況:
-                <% if give.status == "配送準備中" %>
-                  <span class="btn-sky p-lg-4 ml-lg-4 rounded"><%= give.status %></span></p>
-                <% elsif give.status == "配送中" %>
-                  <span class="btn-pink p-lg-4 ml-lg-4 rounded"><%= give.status %></span></p>
-                <% elsif give.status == "配送済み" %>
-                  <span class="btn-gray p-lg-4 ml-lg-4 rounded"><%= give.status %></span>
-                <% elsif give.status == "配送済み" %>
-                  <span class="btn-dangar p-lg-4 ml-lg-4 rounded"><%= give.status %></span>
-                <% end %>
             </div>
           </div>
         <% end %>
@@ -111,6 +113,16 @@
                 <p>数量:<%= detail.quantity %>個</p>
                 <p>お買い上げ:<%= detail.price * detail.quantity %>円</p>
                 <p>購入日:<%= detail.created_at.strftime('%Y/%m/%d') %></p>
+                <p class="text-right">配送状況:
+                <% if detail.status == "配送準備中" %>
+                  <span class="btn-sky p-lg-4 ml-lg-4 rounded"><%= detail.status %></span></p>
+                <% elsif detail.status == "配送中" %>
+                  <span class="btn-pink p-lg-4 ml-lg-4 rounded"><%= detail.status %></span></p>
+                <% elsif detail.status == "配送済み" %>
+                  <span class="btn-gray p-lg-4 ml-lg-4 rounded"><%= detail.status %></span></p>
+                <% elsif detail.status == "問題が発生" %>
+                  <span class="btn-danger p-lg-4 ml-lg-4 rounded"><%= detail.status %></span></p>
+                <% end %>
               <% end %>
             </div>
             <span class="arrowSpace float-left mt-lg-5"><%= fa_icon("arrow-right 5x") %></span>
@@ -124,16 +136,6 @@
               <p class="font-minimum">かな表記[<%= receive.details_name %>]</p>
               <p>〒<%= receive.postal_code %></p>
               <p class="text-turn">届け先<%= receive.address %></p>
-              <p class="text-right">配送状況:
-                <% if receive.status == "配送準備中" %>
-                  <span class="btn-sky p-lg-4 ml-lg-4 rounded"><%= receive.status %></span></p>
-                <% elsif receive.status == "配送中" %>
-                  <span class="btn-pink p-lg-4 ml-lg-4 rounded"><%= receive.status %></span></p>
-                <% elsif receive.status == "配送済み" %>
-                  <span class="btn-gray p-lg-4 ml-lg-4 rounded"><%= receive.status %></span>
-                <% elsif receive.status == "配送済み" %>
-                  <span class="btn-dangar p-lg-4 ml-lg-4 rounded"><%= receive.status %></span>
-                <% end %>
             </div>
           </div>
         <% end %>

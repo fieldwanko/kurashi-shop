@@ -20,18 +20,20 @@
       </thead>
       <tbody>
         <% @details.each do |order| %>
-        <% @detail = order[0] %>
+        <% order.each do |ord| %>
+        <% @detail = ord %>
+        <%# @detail = order[0] %>
           <% @append = @detail.order_append %>
-            <tr class="table-text orderCheck " id ="<%= order.ids[0] %>">
-              <td><%= order.ids[0] %></td>
+            <tr class="table-text">
+              <td class="orderCheck" id ="<%= order.ids[0] %>"><%#= order.ids[0] %><%= @detail.id %></td>
               <td><%= @append.user.first_name %><%= @append.user.last_name %></td>
               <td class="text-limit"><%= @detail.product.title %></td>
               <td><%= @detail.quantity %></td>
               <td><%= @append.total %></td>
-              <%= form_for @append,url:sell_users_order_append_path(@append.id),method: :put do |f| %>
-              <td><%= @append.status %></td>
+              <%= form_for @detail,url:sell_users_order_detail_path(@detail.id),method: :put do |f| %>
+              <td><%= @detail.status %></td>
               <td>
-                <span><%= f.select :status, options_for_select(OrderAppend.statuses.keys),{},{class: "btn selectCss"} %></span></p>
+                <span><%= f.select :status, options_for_select(OrderDetail.statuses.keys),{},{class: "btn selectCss"} %></span></p>
               </td>
               <td>
                 <%= f.submit "変更確定",class: "btn btn-sky" %>
@@ -52,6 +54,7 @@
                 </div>
               </div>
             </div>
+          <% end %>
         <% end %>
       </tbody>
     </table>

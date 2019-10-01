@@ -9,16 +9,4 @@ class SellUsers::OrderAppendsController < ApplicationController
     end
   end
 
-  def update
-      append = OrderAppend.find(params[:id])
-      append.update(append_params)
-      flash[:notice] = "更新完了"
-      redirect_to sell_users_order_appends_path
-  end
-
-  private
-    def append_params
-     params.require(:order_append).permit(:status)
-    end
-
 end
