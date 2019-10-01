@@ -7,8 +7,8 @@ class PresentAppend < ApplicationRecord
     銀行振込:1, クレジット決済: 2
   }
 
-  enum status: {
-    配送準備中:1, 配送中:2, 配送済み:3, 問題が発生: 4
-  }
+  # enum status: {
+  #   配送準備中:1, 配送中:2, 配送済み:3, 問題が発生: 4
+  # }
 
 end

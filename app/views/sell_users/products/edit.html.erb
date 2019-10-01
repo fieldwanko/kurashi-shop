@@ -12,6 +12,9 @@
           <% end %>
         </div>
         <div class="container">
+          <div class="dangerMessage">
+            <h3 class="text-red">注意⚠<span class="ml-lg-3 text-black">在庫数は1000個未満でお願い致します</span></h3>
+          </div>
           <div class="row mt-lg-4">
             <div class="col-lg-3">
               <lavel value="nowStock">現在の在庫数</lavel><br>
@@ -20,7 +23,7 @@
             <span class="col-lg-1 spanPink"><%= fa_icon("angle-double-right 4x") %></span>
             <div class="col-lg-3">
                 <label value="productStock" style="width: 100%;">在庫数を増やす<br>増やす分のみ入力してください</label>
-                <input type="number" id="addStockForm" value="0">
+                <input type="number" id="addStockForm" value="0" min="0">
             </div>
             <span class="col-lg-1 spanPink"><%= fa_icon("angle-double-right 4x") %></span>
             <div class="col-lg-4">

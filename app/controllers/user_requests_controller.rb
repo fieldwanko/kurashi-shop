@@ -1,5 +1,5 @@
 class UserRequestsController < ApplicationController
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   def index
     @user = User.find(params[:user_id])
     @requests = UserRequest.where(user_id: @user.id)
@@ -18,7 +18,6 @@ class UserRequestsController < ApplicationController
     request.destroy
     flash[:notice] = "削除完了"
     redirect_to user_path(current_user.id)
-
   end
 
 

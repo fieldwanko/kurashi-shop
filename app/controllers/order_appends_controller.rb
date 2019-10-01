@@ -24,7 +24,7 @@ class OrderAppendsController < ApplicationController
       order_append.details_name = AddressMenu.find(params[:address]).details_name
       order_append.postal_code = AddressMenu.find(params[:address]).postal_code
       order_append.address = AddressMenu.find(params[:address]).address
-      order_append.status = 1
+      # order_append.status = 1
       order_append.user_id = AddressMenu.find(params[:address]).user_id
     else
       userName = current_user.first_name + current_user.last_name
@@ -34,7 +34,7 @@ class OrderAppendsController < ApplicationController
       order_append.postal_code = current_user.postal_code
       order_append.address = current_user.address
       order_append.user_id = current_user.id
-      order_append.status = 1
+      # order_append.status = 1
     end
     carts.each do |cart|
       product = cart.product
@@ -42,6 +42,7 @@ class OrderAppendsController < ApplicationController
       order_detail.product_id = cart.product.id
       order_detail.price = cart.product.price
       order_detail.quantity = cart.quantity
+      order_detail.status = 1
       order_detail.save
       product.product_arrival.stock -= order_detail.quantity.to_i
       product.save

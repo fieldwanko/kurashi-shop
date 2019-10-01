@@ -26,13 +26,13 @@ class PresentAppendsController < ApplicationController
     present_append.details_name = userDetail
     present_append.postal_code = user.postal_code
     present_append.address = user.address
-    present_append.status = 1
     present_append.pay = params[:pay].to_i
 
     order_detail = present_append.order_details.build
     order_detail.product_id = product.id
     order_detail.price = product.price
     order_detail.quantity = request.quantity
+    order_detail.status = 1
     order_detail.save
 
     present_append.update(coupon_params)
