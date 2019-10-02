@@ -37,6 +37,8 @@ $(function(){
     $('.coupon0').hide();
     $('.coupon1').hide();
     $('.coupon2').hide();
+    if($('#readyTotal').val() <= 0)
+      $('#readyTotal').val(0);
     // console.log($('#couponSelectArray').val());
     }
   });
@@ -60,6 +62,8 @@ $(function(){
     $('.coupon0').hide();
     $('.coupon1').hide();
     $('.coupon2').hide();
+    if($('#readyTotal').val() <= 0)
+      $('#readyTotal').val(0);
     // console.log($('#couponSelectArray').val());
   }
   });
@@ -83,6 +87,8 @@ $(function(){
     $('.coupon0').hide();
     $('.coupon1').hide();
     $('.coupon2').hide();
+    if($('#readyTotal').val() <= 0)
+      $('#readyTotal').val(0);
   }
   });
 });

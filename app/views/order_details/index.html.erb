@@ -46,7 +46,12 @@
                 <p class="font-bold">合計金額: <%= append.total %></p>
               <% else %>
                 <p>クーポンを使いました</p>
-                <p class="font-bold">合計金額: <%= append.total %></p>
+                <p class="font-bold">合計金額:
+                <% if append.total <= 0 %>
+                  0</p>
+                <% else %>
+                  <%= append.total %></p>
+                <% end %>
               <% end %>
             </div>
           </div>
@@ -72,7 +77,11 @@
                   <p>合計金額: <%= give.total %></p>
                 <% else %>
                   <p>クーポンを使いました</p>
-                  <p>合計金額: <%= give.total %></p>
+                  <% if give.total <= 0 %>
+                    <p>合計金額: 0</p>
+                  <% else %>
+                    <p>合計金額: <%= give.total %></p>
+                  <% end %>
                 <% end %>
 
                 <p class="text-right">配送状況:

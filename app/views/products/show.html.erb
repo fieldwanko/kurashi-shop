@@ -37,11 +37,13 @@
               <%= f.submit "商品をカートに入れる",class: "btn btn-pink rounded offset-lg-7 mt-lg-5 text-white col-lg-5 pt-lg-3 pb-lg-3","data-confirm" => "本当にカートに入れますか？" %>
             <% end %>
           </div>
-          <% if current_user.user_requests.where(product_id: @product.id).first %>
-            <p class="border pt-lg-3 pb-lg-3 bg-black text-white offset-lg-6 col-lg-6 text-center mt-lg-5">すでに欲しい物リストに登録されています</p>
-          <% else %>
-            <%= form_for [@product,@request],url: product_user_requests_path(@product.id) do |f| %>
-              <%= f.submit "商品を欲しいものに追加する",class: "btn btn-sky rounded p-lg-3 col-lg-5 offset-lg-7 mt-lg-3","data-confirm" => "本当に欲しいものに追加しますか？尚、追加された商品はマイページの欲しいものリストから確認できます" %>
+          <% if user_signed_in? %>
+            <% if current_user.user_requests.where(product_id: @product.id).first %>
+              <p class="border pt-lg-3 pb-lg-3 bg-black text-white offset-lg-6 col-lg-6 text-center mt-lg-5">すでに欲しい物リストに登録されています</p>
+            <% else %>
+              <%= form_for [@product,@request],url: product_user_requests_path(@product.id) do |f| %>
+                <%= f.submit "商品を欲しいものに追加する",class: "btn btn-sky rounded p-lg-3 col-lg-5 offset-lg-7 mt-lg-3","data-confirm" => "本当に欲しいものに追加しますか？尚、追加された商品はマイページの欲しいものリストから確認できます" %>
+              <% end %>
             <% end %>
           <% end %>
 
