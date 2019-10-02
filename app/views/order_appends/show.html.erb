@@ -102,7 +102,7 @@
         <p class="offset-lg-1 col-lg-5 orderAppendJudge border p-lg-3">一度購入されました商品は、返品することができません<br>
         ご確認の上、購入をお願い致します。</p>
         <p class="btn col-lg-4 offset-lg-2 border-bottom">合計金額:
-          <input class="font-bold" id="readyTotal" readonly="readonly" value=<%= @order_append.total %> >円</p>
+          <input class="font-bold" id="readyTotal" readonly="readonly" min="0" value=<%= @order_append.total %> >円</p>
         <div class="row" style="width: 100%;">
           <p class="col-lg-4 offset-lg-9">使用クーポン数<input type="number" value="0" class="col-lg-3" readonly="readonly" id="couponLimit"></p>
         </div>

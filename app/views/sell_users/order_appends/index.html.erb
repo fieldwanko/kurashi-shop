@@ -29,7 +29,13 @@
               <td><%= @append.user.first_name %><%= @append.user.last_name %></td>
               <td class="text-limit"><%= @detail.product.title %></td>
               <td><%= @detail.quantity %></td>
-              <td><%= @append.total %></td>
+              <td>
+                <% if @append.total <= 0 %>
+                  0
+                <% else %>
+                  <%= @append.total %>
+                <% end %>
+              </td>
               <%= form_for @detail,url:sell_users_order_detail_path(@detail.id),method: :put do |f| %>
               <td><%= @detail.status %></td>
               <td>
