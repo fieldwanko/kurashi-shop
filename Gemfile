@@ -78,7 +78,7 @@ gem 'font-awesome-rails'
 gem 'rails-i18n', '~> 5.1'
 gem 'unicorn'
 gem 'mysql2'
-
+gem 'dotenv-rails'
 
 
 
