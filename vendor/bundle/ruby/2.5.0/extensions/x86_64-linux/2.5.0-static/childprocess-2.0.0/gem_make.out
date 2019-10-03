@@ -1,5 +1,0 @@
-current directory: /var/www/html/kurashi-shop/vendor/bundle/ruby/2.5.0/gems/childprocess-2.0.0/ext
-/home/ec2-user/.rbenv/versions/2.5.5/bin/ruby mkrf_conf.rb
-
-current directory: /var/www/html/kurashi-shop/vendor/bundle/ruby/2.5.0/gems/childprocess-2.0.0/ext
-/home/ec2-user/.rbenv/versions/2.5.5/bin/ruby -rrubygems /var/www/html/kurashi-shop/vendor/bundle/ruby/2.5.0/gems/rake-12.3.3/exe/rake RUBYARCHDIR=/var/www/html/kurashi-shop/vendor/bundle/ruby/2.5.0/extensions/x86_64-linux/2.5.0-static/childprocess-2.0.0 RUBYLIBDIR=/var/www/html/kurashi-shop/vendor/bundle/ruby/2.5.0/extensions/x86_64-linux/2.5.0-static/childprocess-2.0.0
